@@ -1,0 +1,650 @@
+Last login: Thu Jan 19 02:50:42 2023 from ec2-13-233-177-4.ap-south-1.compute.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-172-31-45-145 ~]$ sudo su -
+Last login: Thu Jan 19 02:51:55 UTC 2023 on pts/0
+[root@ip-172-31-45-145 ~]# rpm -q docker
+docker-20.10.17-1.amzn2.0.1.x86_64
+[root@ip-172-31-45-145 ~]# systemctl start docker
+[root@ip-172-31-45-145 ~]# systemctl status docker
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: active (running) since Thu 2023-01-19 02:52:11 UTC; 29min ago
+     Docs: https://docs.docker.com
+  Process: 3652 ExecStartPre=/usr/libexec/docker/docker-setup-runtimes.sh (code=exited, status=0/SUCCESS)
+  Process: 3651 ExecStartPre=/bin/mkdir -p /run/docker (code=exited, status=0/SUCCESS)
+ Main PID: 3655 (dockerd)
+    Tasks: 12
+   Memory: 395.0M
+   CGroup: /system.slice/docker.service
+           └─3655 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --default-ulimit nofile=32768:65536
+
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal dockerd[3655]: time="2023-01-19T02:52:11.057373825Z" level=info msg="[graphdri...ay2"
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal dockerd[3655]: time="2023-01-19T02:52:11.198678483Z" level=warning msg="Your k...ght"
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal dockerd[3655]: time="2023-01-19T02:52:11.199139315Z" level=warning msg="Your k...ice"
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal dockerd[3655]: time="2023-01-19T02:52:11.200317869Z" level=info msg="Loading c...rt."
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal dockerd[3655]: time="2023-01-19T02:52:11.469934127Z" level=info msg="Default b...ess"
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal dockerd[3655]: time="2023-01-19T02:52:11.512430185Z" level=info msg="Loading c...ne."
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal dockerd[3655]: time="2023-01-19T02:52:11.629153974Z" level=info msg="Docker da...0.17
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal dockerd[3655]: time="2023-01-19T02:52:11.630350963Z" level=info msg="Daemon ha...ion"
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal systemd[1]: Started Docker Application Container Engine.
+Jan 19 02:52:11 ip-172-31-45-145.ap-south-1.compute.internal dockerd[3655]: time="2023-01-19T02:52:11.672910296Z" level=info msg="API liste...ock"
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@ip-172-31-45-145 ~]# docker ps
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
+5dc1afc38b51   mak:version1   "/bin/bash"   15 minutes ago   Up 15 minutes             madhu
+5fe42f4a1582   centos:7       "/bin/bash"   25 minutes ago   Up 25 minutes             myos4
+[root@ip-172-31-45-145 ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+5dc1afc38b51   mak:version1   "/bin/bash"              15 minutes ago   Up 15 minutes                         madhu
+5fe42f4a1582   centos:7       "/bin/bash"              25 minutes ago   Up 25 minutes                         myos4
+5463034163b3   mysql:latest   "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               DB
+da4b69cf6b0a   wordpress      "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               myword
+159eb9286a86   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             webpage
+2e5040e651d7   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             myos3
+2695133fd790   centos:7       "/bin/bash"              36 hours ago     Exited (137) 35 hours ago             myos2
+c9f861e0d1c4   centos:7       "/bin/bash"              37 hours ago     Exited (137) 36 hours ago             myos
+[root@ip-172-31-45-145 ~]# docker images
+REPOSITORY   TAG        IMAGE ID       CREATED          SIZE
+mak          version1   206757b4796b   17 minutes ago   610MB
+mysql        latest     b939d379d46e   23 hours ago     514MB
+wordpress    latest     fcd4967b9728   7 days ago       615MB
+centos       7          eeb6ee3f44bd   16 months ago    204MB
+[root@ip-172-31-45-145 ~]# docker pull ubuntu:14.04
+14.04: Pulling from library/ubuntu
+2e6e20c8e2e6: Pull complete 
+0551a797c01d: Pull complete 
+512123a864da: Pull complete 
+Digest: sha256:64483f3496c1373bfd55348e88694d1c4d0c9b660dee6bfef5e12f43b9933b30
+Status: Downloaded newer image for ubuntu:14.04
+docker.io/library/ubuntu:14.04
+[root@ip-172-31-45-145 ~]# docker images
+REPOSITORY   TAG        IMAGE ID       CREATED          SIZE
+mak          version1   206757b4796b   18 minutes ago   610MB
+mysql        latest     b939d379d46e   23 hours ago     514MB
+wordpress    latest     fcd4967b9728   7 days ago       615MB
+centos       7          eeb6ee3f44bd   16 months ago    204MB
+ubuntu       14.04      13b66b487594   22 months ago    197MB
+[root@ip-172-31-45-145 ~]# docke run ubuntu:1404
+-bash: docke: command not found
+[root@ip-172-31-45-145 ~]# docke run ubuntu:14.04
+-bash: docke: command not found
+[root@ip-172-31-45-145 ~]# docker run ubuntu:14.04
+[root@ip-172-31-45-145 ~]# docker ps
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
+5dc1afc38b51   mak:version1   "/bin/bash"   18 minutes ago   Up 18 minutes             madhu
+5fe42f4a1582   centos:7       "/bin/bash"   28 minutes ago   Up 28 minutes             myos4
+[root@ip-172-31-45-145 ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+46ea38800146   ubuntu:14.04   "/bin/bash"              20 seconds ago   Exited (0) 20 seconds ago             happy_leakey
+5dc1afc38b51   mak:version1   "/bin/bash"              18 minutes ago   Up 18 minutes                         madhu
+5fe42f4a1582   centos:7       "/bin/bash"              28 minutes ago   Up 28 minutes                         myos4
+5463034163b3   mysql:latest   "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               DB
+da4b69cf6b0a   wordpress      "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               myword
+159eb9286a86   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             webpage
+2e5040e651d7   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             myos3
+2695133fd790   centos:7       "/bin/bash"              36 hours ago     Exited (137) 35 hours ago             myos2
+c9f861e0d1c4   centos:7       "/bin/bash"              37 hours ago     Exited (137) 36 hours ago             myos
+[root@ip-172-31-45-145 ~]# docker ps
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
+5dc1afc38b51   mak:version1   "/bin/bash"   18 minutes ago   Up 18 minutes             madhu
+5fe42f4a1582   centos:7       "/bin/bash"   28 minutes ago   Up 28 minutes             myos4
+[root@ip-172-31-45-145 ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+46ea38800146   ubuntu:14.04   "/bin/bash"              43 seconds ago   Exited (0) 43 seconds ago             happy_leakey
+5dc1afc38b51   mak:version1   "/bin/bash"              18 minutes ago   Up 18 minutes                         madhu
+5fe42f4a1582   centos:7       "/bin/bash"              28 minutes ago   Up 28 minutes                         myos4
+5463034163b3   mysql:latest   "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               DB
+da4b69cf6b0a   wordpress      "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               myword
+159eb9286a86   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             webpage
+2e5040e651d7   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             myos3
+2695133fd790   centos:7       "/bin/bash"              36 hours ago     Exited (137) 35 hours ago             myos2
+c9f861e0d1c4   centos:7       "/bin/bash"              37 hours ago     Exited (137) 36 hours ago             myos
+[root@ip-172-31-45-145 ~]# docker attach myos4
+[root@5fe42f4a1582 /]# docker stop myos4
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+[root@5fe42f4a1582 /]# read escape sequence
+[root@ip-172-31-45-145 ~]# docker ps
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS     NAMES
+5dc1afc38b51   mak:version1   "/bin/bash"   20 minutes ago   Up 20 minutes             madhu
+5fe42f4a1582   centos:7       "/bin/bash"   30 minutes ago   Up 30 minutes             myos4
+[root@ip-172-31-45-145 ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+46ea38800146   ubuntu:14.04   "/bin/bash"              2 minutes ago    Exited (0) 2 minutes ago              happy_leakey
+5dc1afc38b51   mak:version1   "/bin/bash"              20 minutes ago   Up 20 minutes                         madhu
+5fe42f4a1582   centos:7       "/bin/bash"              30 minutes ago   Up 30 minutes                         myos4
+5463034163b3   mysql:latest   "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               DB
+da4b69cf6b0a   wordpress      "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               myword
+159eb9286a86   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             webpage
+2e5040e651d7   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             myos3
+2695133fd790   centos:7       "/bin/bash"              36 hours ago     Exited (137) 35 hours ago             myos2
+c9f861e0d1c4   centos:7       "/bin/bash"              37 hours ago     Exited (137) 36 hours ago             myos
+[root@ip-172-31-45-145 ~]# docker rm 46e
+46e
+[root@ip-172-31-45-145 ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+5dc1afc38b51   mak:version1   "/bin/bash"              21 minutes ago   Up 21 minutes                         madhu
+5fe42f4a1582   centos:7       "/bin/bash"              31 minutes ago   Up 31 minutes                         myos4
+5463034163b3   mysql:latest   "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               DB
+da4b69cf6b0a   wordpress      "docker-entrypoint.s…"   13 hours ago     Exited (0) 10 hours ago               myword
+159eb9286a86   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             webpage
+2e5040e651d7   centos:7       "/bin/bash"              23 hours ago     Exited (137) 22 hours ago             myos3
+2695133fd790   centos:7       "/bin/bash"              36 hours ago     Exited (137) 35 hours ago             myos2
+c9f861e0d1c4   centos:7       "/bin/bash"              37 hours ago     Exited (137) 36 hours ago             myos
+[root@ip-172-31-45-145 ~]# docker rmi 46e
+Error: No such image: 46e
+[root@ip-172-31-45-145 ~]# pwd
+/root
+[root@ip-172-31-45-145 ~]# cd /
+[root@ip-172-31-45-145 /]# ls
+bin  boot  dev  etc  home  lib  lib64  local  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+[root@ip-172-31-45-145 /]# cd var/
+[root@ip-172-31-45-145 var]# ls
+account  adm  cache  db  empty  games  gopher  kerberos  lib  local  lock  log  mail  nis  opt  preserve  run  spool  tmp  www  yp
+[root@ip-172-31-45-145 var]# cd www/
+[root@ip-172-31-45-145 www]# ls
+cgi-bin  html
+[root@ip-172-31-45-145 www]# cd html/
+[root@ip-172-31-45-145 html]# ls
+index.html
+[root@ip-172-31-45-145 html]# cat index.html
+This is morning revision of docker.
+[root@ip-172-31-45-145 html]# docker run -it --name server -p 8888:80 centos:7
+[root@b1a9ebbcb9d1 /]# docker ps -a
+bash: docker: command not found
+[root@b1a9ebbcb9d1 /]# docker images
+bash: docker: command not found
+[root@b1a9ebbcb9d1 /]# [root@ip-172-31-45-145 html]# cd /
+[root@ip-172-31-45-145 /]# ps -aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.5  41660  5348 ?        Ss   02:50   0:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 21
+root         2  0.0  0.0      0     0 ?        S    02:50   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        I<   02:50   0:00 [rcu_gp]
+root         4  0.0  0.0      0     0 ?        I<   02:50   0:00 [rcu_par_gp]
+root         6  0.0  0.0      0     0 ?        I<   02:50   0:00 [kworker/0:0H-ev]
+root         8  0.0  0.0      0     0 ?        I<   02:50   0:00 [mm_percpu_wq]
+root         9  0.0  0.0      0     0 ?        S    02:50   0:00 [rcu_tasks_rude_]
+root        10  0.0  0.0      0     0 ?        S    02:50   0:00 [rcu_tasks_trace]
+root        11  0.0  0.0      0     0 ?        S    02:50   0:00 [ksoftirqd/0]
+root        12  0.0  0.0      0     0 ?        I    02:50   0:00 [rcu_sched]
+root        13  0.0  0.0      0     0 ?        S    02:50   0:00 [migration/0]
+root        14  0.0  0.0      0     0 ?        I    02:50   0:00 [kworker/0:1-eve]
+root        15  0.0  0.0      0     0 ?        S    02:50   0:00 [cpuhp/0]
+root        17  0.0  0.0      0     0 ?        S    02:50   0:00 [kdevtmpfs]
+root        18  0.0  0.0      0     0 ?        I<   02:50   0:00 [netns]
+root        21  0.0  0.0      0     0 ?        S    02:50   0:00 [kauditd]
+root       296  0.0  0.0      0     0 ?        S    02:50   0:00 [khungtaskd]
+root       297  0.0  0.0      0     0 ?        S    02:50   0:00 [oom_reaper]
+root       298  0.0  0.0      0     0 ?        I<   02:50   0:00 [writeback]
+root       300  0.0  0.0      0     0 ?        S    02:50   0:00 [kcompactd0]
+root       301  0.0  0.0      0     0 ?        SN   02:50   0:00 [ksmd]
+root       302  0.0  0.0      0     0 ?        SN   02:50   0:00 [khugepaged]
+root       357  0.0  0.0      0     0 ?        I<   02:50   0:00 [kintegrityd]
+root       359  0.0  0.0      0     0 ?        I<   02:50   0:00 [kblockd]
+root       360  0.0  0.0      0     0 ?        I<   02:50   0:00 [blkcg_punt_bio]
+root       712  0.0  0.0      0     0 ?        S    02:50   0:00 [xen-balloon]
+root       718  0.0  0.0      0     0 ?        I<   02:50   0:00 [tpm_dev_wq]
+root       724  0.0  0.0      0     0 ?        I<   02:50   0:00 [md]
+root       727  0.0  0.0      0     0 ?        I<   02:50   0:00 [edac-poller]
+root       732  0.0  0.0      0     0 ?        S    02:50   0:00 [watchdogd]
+root       829  0.0  0.0      0     0 ?        I<   02:50   0:00 [kworker/0:1H-xf]
+root       882  0.0  0.0      0     0 ?        S    02:50   0:00 [kswapd0]
+root       884  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfsalloc]
+root       885  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs_mru_cache]
+root       888  0.0  0.0      0     0 ?        I<   02:50   0:00 [kthrotld]
+root       899  0.0  0.0      0     0 ?        S    02:50   0:00 [xenbus]
+root       900  0.0  0.0      0     0 ?        S    02:50   0:00 [xenwatch]
+root       936  0.0  0.0      0     0 ?        I<   02:50   0:00 [nvme-wq]
+root       938  0.0  0.0      0     0 ?        I<   02:50   0:00 [nvme-reset-wq]
+root       940  0.0  0.0      0     0 ?        I<   02:50   0:00 [nvme-delete-wq]
+root       974  0.0  0.0      0     0 ?        I<   02:50   0:00 [ipv6_addrconf]
+root       983  0.0  0.0      0     0 ?        I<   02:50   0:00 [kstrp]
+root       995  0.0  0.0      0     0 ?        I<   02:50   0:00 [zswap-shrink]
+root       999  0.0  0.0      0     0 ?        I<   02:50   0:00 [kworker/u31:0]
+root      1680  0.0  0.0      0     0 ?        I<   02:50   0:00 [ata_sff]
+root      1685  0.0  0.0      0     0 ?        S    02:50   0:00 [scsi_eh_0]
+root      1694  0.0  0.0      0     0 ?        I<   02:50   0:00 [scsi_tmf_0]
+root      1698  0.0  0.0      0     0 ?        S    02:50   0:00 [scsi_eh_1]
+root      1699  0.0  0.0      0     0 ?        I<   02:50   0:00 [scsi_tmf_1]
+root      1710  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-buf/xvda1]
+root      1711  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-conv/xvda1]
+root      1712  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-cil/xvda1]
+root      1713  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-reclaim/xvd]
+root      1714  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-eofblocks/x]
+root      1715  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-log/xvda1]
+root      1716  0.0  0.0      0     0 ?        S    02:50   0:00 [xfsaild/xvda1]
+root      1775  0.0  0.9  39108  9460 ?        Ss   02:50   0:00 /usr/lib/systemd/systemd-journald
+root      1792  0.0  0.2 116756  2104 ?        Ss   02:50   0:00 /usr/sbin/lvmetad -f
+root      2385  0.0  0.0      0     0 ?        I<   02:50   0:00 [ena]
+root      2436  0.0  0.3  46440  3740 ?        Ss   02:50   0:00 /usr/lib/systemd/systemd-udevd
+root      2481  0.0  0.0      0     0 ?        I<   02:50   0:00 [cryptd]
+root      2576  0.0  0.0      0     0 ?        I<   02:50   0:00 [rpciod]
+root      2577  0.0  0.0      0     0 ?        I<   02:50   0:00 [xprtiod]
+root      2580  0.0  0.2  59748  2068 ?        S<sl 02:50   0:00 /sbin/auditd
+dbus      2606  0.0  0.4  58272  4056 ?        Ss   02:50   0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-a
+rpc       2610  0.0  0.3  67280  3216 ?        Ss   02:50   0:00 /sbin/rpcbind -w
+libstor+  2615  0.0  0.1  12632  1796 ?        Ss   02:50   0:00 /usr/bin/lsmd -d
+root      2616  0.0  0.2  28496  2952 ?        Ss   02:50   0:00 /usr/lib/systemd/systemd-logind
+rngd      2640  0.0  0.4  94100  4564 ?        Ss   02:50   0:00 /sbin/rngd -f --fill-watermark=0 --exclude=jitter
+root      2642  0.0  0.3 212004  3236 ?        Ssl  02:50   0:00 /usr/sbin/gssproxy -D
+chrony    2650  0.0  0.3 120360  3208 ?        S    02:50   0:00 /usr/sbin/chronyd -F 2
+root      2856  0.0  0.3  98684  3720 ?        Ss   02:50   0:00 /sbin/dhclient -q -lf /var/lib/dhclient/dhclient--eth0.lease -pf /var/run/dhclien
+root      2905  0.0  0.4  98684  4200 ?        Ss   02:50   0:00 /sbin/dhclient -6 -nw -lf /var/lib/dhclient/dhclient6--eth0.lease -pf /var/run/dh
+root      3049  0.0  0.4  90364  4796 ?        Ss   02:50   0:00 /usr/libexec/postfix/master -w
+postfix   3050  0.0  0.6  90452  6748 ?        S    02:50   0:00 pickup -l -t unix -u
+postfix   3051  0.0  0.6  90528  6696 ?        S    02:50   0:00 qmgr -l -t unix -u
+root      3086  0.0  1.0 714420 10680 ?        Ssl  02:50   0:00 /usr/bin/amazon-ssm-agent
+root      3093  0.0  0.7 216536  7280 ?        Ssl  02:50   0:00 /usr/sbin/rsyslogd -n
+root      3097  0.0  0.7 110852  7808 ?        Ss   02:50   0:00 /usr/sbin/sshd -D
+root      3101  0.0  0.3 135092  3208 ?        Ss   02:50   0:00 /usr/sbin/crond -n
+root      3105  0.0  0.2  27896  2072 ?        Ss   02:50   0:00 /usr/sbin/atd -f
+root      3125  0.0  0.1 121312  1708 tty1     Ss+  02:50   0:00 /sbin/agetty --noclear tty1 linux
+root      3126  0.0  0.2 120960  2264 ttyS0    Ss+  02:50   0:00 /sbin/agetty --keep-baud 115200,38400,9600 ttyS0 vt220
+root      3158  0.0  0.0   4272   108 ?        Ss   02:50   0:00 /usr/sbin/acpid
+root      3162  0.0  1.6 723848 16112 ?        Sl   02:50   0:00 /usr/bin/ssm-agent-worker
+root      3188  0.0  0.8 148520  8696 ?        Ss   02:50   0:00 sshd: ec2-user [priv]
+ec2-user  3582  0.0  0.4 148520  4696 ?        S    02:50   0:00 sshd: ec2-user@pts/0
+ec2-user  3583  0.0  0.4 124740  3972 pts/0    Ss   02:50   0:00 -bash
+root      3612  0.0  0.7 239816  7124 pts/0    S    02:51   0:00 sudo su -
+root      3613  0.0  0.4 190492  4008 pts/0    S    02:51   0:00 su -
+root      3614  0.0  0.3 124736  3876 pts/0    S+   02:51   0:00 -bash
+root      3643  0.0  3.1 1369920 30692 ?       Ssl  02:52   0:01 /usr/bin/containerd
+root      3655  0.3  7.0 1468316 69700 ?       Ssl  02:52   0:08 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --default-
+root      3678  0.0  0.0   4228   700 ?        S    02:52   0:00 bpfilter_umh
+root      3848  0.0  0.0      0     0 ?        I    02:56   0:00 [kworker/u30:0-e]
+root      3869  0.0  1.0 712468 10012 ?        Sl   02:56   0:00 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 5fe42f4a1582fb84f56d4407233d
+root      3890  0.0  0.2  11844  2856 pts/0    Ss+  02:56   0:00 /bin/bash
+root      4200  0.0  0.0      0     0 ?        I    03:05   0:00 [kworker/0:2-eve]
+root      4228  0.0  0.9 712212  9552 ?        Sl   03:06   0:00 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 5dc1afc38b51968a8ed075dbe816
+root      4251  0.0  0.2  11844  2912 pts/0    Ss+  03:06   0:00 /bin/bash
+root      4409  0.0  0.8 148520  8636 ?        Ss   03:20   0:00 sshd: ec2-user [priv]
+ec2-user  4803  0.0  0.4 148520  4656 ?        S    03:20   0:00 sshd: ec2-user@pts/1
+ec2-user  4804  0.0  0.3 124740  3864 pts/1    Ss   03:20   0:00 -bash
+root      4828  0.0  0.7 239816  7072 pts/1    S    03:21   0:00 sudo su -
+root      4829  0.0  0.4 190492  3960 pts/1    S    03:21   0:00 su -
+root      4830  0.0  0.4 124868  4364 pts/1    S    03:21   0:00 -bash
+root      4888  0.0  0.0      0     0 ?        I    03:23   0:00 [kworker/u30:1-e]
+root      5088  0.0  0.0      0     0 ?        I    03:30   0:00 [kworker/0:0-eve]
+root      5115  0.0  0.0      0     0 ?        I    03:32   0:00 [kworker/u30:2-e]
+root      5122  0.0  0.2 1012672 2828 ?        Sl   03:32   0:00 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8888 -container-ip 1
+root      5127  0.0  0.3 1164232 3140 ?        Sl   03:32   0:00 /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 8888 -container-ip 172.17
+root      5140  0.0  0.9 712468  9424 ?        Sl   03:32   0:00 /usr/bin/containerd-shim-runc-v2 -namespace moby -id b1a9ebbcb9d182c0d9baec07ab76
+root      5163  0.1  0.3  11844  2988 pts/0    Ss+  03:32   0:00 /bin/bash
+root      5203  1.0  0.8 148400  8480 ?        Ss   03:34   0:00 sshd: unknown [priv]
+sshd      5204  0.0  0.6 115276  6872 ?        S    03:34   0:00 sshd: unknown [net]
+root      5205  0.0  0.4 162320  3956 pts/1    R+   03:34   0:00 ps -aux
+[root@ip-172-31-45-145 /]# ifconfig
+docker0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        inet6 fe80::42:cfff:fe50:1dc9  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:cf:50:1d:c9  txqueuelen 0  (Ethernet)
+        RX packets 6796  bytes 471522 (460.4 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11092  bytes 107518561 (102.5 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.31.45.145  netmask 255.255.240.0  broadcast 172.31.47.255
+        inet6 fe80::6f:21ff:fe7b:ba46  prefixlen 64  scopeid 0x20<link>
+        ether 02:6f:21:7b:ba:46  txqueuelen 1000  (Ethernet)
+        RX packets 134990  bytes 185325664 (176.7 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 21705  bytes 2288934 (2.1 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth1cb07b1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::d42a:b8ff:fe65:1d10  prefixlen 64  scopeid 0x20<link>
+        ether d6:2a:b8:65:1d:10  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 13  bytes 990 (990.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth1e92ee6: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::d4ca:7dff:fe01:d5c2  prefixlen 64  scopeid 0x20<link>
+        ether d6:ca:7d:01:d5:c2  txqueuelen 0  (Ethernet)
+        RX packets 6796  bytes 566666 (553.3 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11106  bytes 107519621 (102.5 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vetha9a41ab: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::2096:9dff:fe93:7671  prefixlen 64  scopeid 0x20<link>
+        ether 22:96:9d:93:76:71  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 9  bytes 710 (710.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@ip-172-31-45-145 /]# curl http://172.31.45.145
+curl: (7) Failed to connect to 172.31.45.145 port 80 after 0 ms: Connection refused
+[root@ip-172-31-45-145 /]# httpd
+[root@ip-172-31-45-145 /]# curl http://172.31.45.145
+This is morning revision of docker.
+[root@ip-172-31-45-145 /]# pa -aux
+-bash: pa: command not found
+[root@ip-172-31-45-145 /]# ps -aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.5  41660  5348 ?        Ss   02:50   0:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 21
+root         2  0.0  0.0      0     0 ?        S    02:50   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        I<   02:50   0:00 [rcu_gp]
+root         4  0.0  0.0      0     0 ?        I<   02:50   0:00 [rcu_par_gp]
+root         6  0.0  0.0      0     0 ?        I<   02:50   0:00 [kworker/0:0H-ev]
+root         8  0.0  0.0      0     0 ?        I<   02:50   0:00 [mm_percpu_wq]
+root         9  0.0  0.0      0     0 ?        S    02:50   0:00 [rcu_tasks_rude_]
+root        10  0.0  0.0      0     0 ?        S    02:50   0:00 [rcu_tasks_trace]
+root        11  0.0  0.0      0     0 ?        S    02:50   0:00 [ksoftirqd/0]
+root        12  0.0  0.0      0     0 ?        I    02:50   0:00 [rcu_sched]
+root        13  0.0  0.0      0     0 ?        S    02:50   0:00 [migration/0]
+root        14  0.0  0.0      0     0 ?        I    02:50   0:00 [kworker/0:1-eve]
+root        15  0.0  0.0      0     0 ?        S    02:50   0:00 [cpuhp/0]
+root        17  0.0  0.0      0     0 ?        S    02:50   0:00 [kdevtmpfs]
+root        18  0.0  0.0      0     0 ?        I<   02:50   0:00 [netns]
+root        21  0.0  0.0      0     0 ?        S    02:50   0:00 [kauditd]
+root       296  0.0  0.0      0     0 ?        S    02:50   0:00 [khungtaskd]
+root       297  0.0  0.0      0     0 ?        S    02:50   0:00 [oom_reaper]
+root       298  0.0  0.0      0     0 ?        I<   02:50   0:00 [writeback]
+root       300  0.0  0.0      0     0 ?        S    02:50   0:00 [kcompactd0]
+root       301  0.0  0.0      0     0 ?        SN   02:50   0:00 [ksmd]
+root       302  0.0  0.0      0     0 ?        SN   02:50   0:00 [khugepaged]
+root       357  0.0  0.0      0     0 ?        I<   02:50   0:00 [kintegrityd]
+root       359  0.0  0.0      0     0 ?        I<   02:50   0:00 [kblockd]
+root       360  0.0  0.0      0     0 ?        I<   02:50   0:00 [blkcg_punt_bio]
+root       712  0.0  0.0      0     0 ?        S    02:50   0:00 [xen-balloon]
+root       718  0.0  0.0      0     0 ?        I<   02:50   0:00 [tpm_dev_wq]
+root       724  0.0  0.0      0     0 ?        I<   02:50   0:00 [md]
+root       727  0.0  0.0      0     0 ?        I<   02:50   0:00 [edac-poller]
+root       732  0.0  0.0      0     0 ?        S    02:50   0:00 [watchdogd]
+root       829  0.0  0.0      0     0 ?        I<   02:50   0:00 [kworker/0:1H-kb]
+root       882  0.0  0.0      0     0 ?        S    02:50   0:00 [kswapd0]
+root       884  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfsalloc]
+root       885  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs_mru_cache]
+root       888  0.0  0.0      0     0 ?        I<   02:50   0:00 [kthrotld]
+root       899  0.0  0.0      0     0 ?        S    02:50   0:00 [xenbus]
+root       900  0.0  0.0      0     0 ?        S    02:50   0:00 [xenwatch]
+root       936  0.0  0.0      0     0 ?        I<   02:50   0:00 [nvme-wq]
+root       938  0.0  0.0      0     0 ?        I<   02:50   0:00 [nvme-reset-wq]
+root       940  0.0  0.0      0     0 ?        I<   02:50   0:00 [nvme-delete-wq]
+root       974  0.0  0.0      0     0 ?        I<   02:50   0:00 [ipv6_addrconf]
+root       983  0.0  0.0      0     0 ?        I<   02:50   0:00 [kstrp]
+root       995  0.0  0.0      0     0 ?        I<   02:50   0:00 [zswap-shrink]
+root       999  0.0  0.0      0     0 ?        I<   02:50   0:00 [kworker/u31:0]
+root      1680  0.0  0.0      0     0 ?        I<   02:50   0:00 [ata_sff]
+root      1685  0.0  0.0      0     0 ?        S    02:50   0:00 [scsi_eh_0]
+root      1694  0.0  0.0      0     0 ?        I<   02:50   0:00 [scsi_tmf_0]
+root      1698  0.0  0.0      0     0 ?        S    02:50   0:00 [scsi_eh_1]
+root      1699  0.0  0.0      0     0 ?        I<   02:50   0:00 [scsi_tmf_1]
+root      1710  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-buf/xvda1]
+root      1711  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-conv/xvda1]
+root      1712  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-cil/xvda1]
+root      1713  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-reclaim/xvd]
+root      1714  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-eofblocks/x]
+root      1715  0.0  0.0      0     0 ?        I<   02:50   0:00 [xfs-log/xvda1]
+root      1716  0.0  0.0      0     0 ?        S    02:50   0:00 [xfsaild/xvda1]
+root      1775  0.0  0.9  39108  9480 ?        Ss   02:50   0:00 /usr/lib/systemd/systemd-journald
+root      1792  0.0  0.2 116756  2104 ?        Ss   02:50   0:00 /usr/sbin/lvmetad -f
+root      2385  0.0  0.0      0     0 ?        I<   02:50   0:00 [ena]
+root      2436  0.0  0.3  46440  3740 ?        Ss   02:50   0:00 /usr/lib/systemd/systemd-udevd
+root      2481  0.0  0.0      0     0 ?        I<   02:50   0:00 [cryptd]
+root      2576  0.0  0.0      0     0 ?        I<   02:50   0:00 [rpciod]
+root      2577  0.0  0.0      0     0 ?        I<   02:50   0:00 [xprtiod]
+root      2580  0.0  0.2  59748  2068 ?        S<sl 02:50   0:00 /sbin/auditd
+dbus      2606  0.0  0.4  58272  4056 ?        Ss   02:50   0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-a
+rpc       2610  0.0  0.3  67280  3216 ?        Ss   02:50   0:00 /sbin/rpcbind -w
+libstor+  2615  0.0  0.1  12632  1796 ?        Ss   02:50   0:00 /usr/bin/lsmd -d
+root      2616  0.0  0.2  28496  2952 ?        Ss   02:50   0:00 /usr/lib/systemd/systemd-logind
+rngd      2640  0.0  0.4  94100  4564 ?        Ss   02:50   0:00 /sbin/rngd -f --fill-watermark=0 --exclude=jitter
+root      2642  0.0  0.3 212004  3236 ?        Ssl  02:50   0:00 /usr/sbin/gssproxy -D
+chrony    2650  0.0  0.3 120360  3208 ?        S    02:50   0:00 /usr/sbin/chronyd -F 2
+root      2856  0.0  0.3  98684  3720 ?        Ss   02:50   0:00 /sbin/dhclient -q -lf /var/lib/dhclient/dhclient--eth0.lease -pf /var/run/dhclien
+root      2905  0.0  0.4  98684  4200 ?        Ss   02:50   0:00 /sbin/dhclient -6 -nw -lf /var/lib/dhclient/dhclient6--eth0.lease -pf /var/run/dh
+root      3049  0.0  0.4  90364  4796 ?        Ss   02:50   0:00 /usr/libexec/postfix/master -w
+postfix   3050  0.0  0.6  90452  6748 ?        S    02:50   0:00 pickup -l -t unix -u
+postfix   3051  0.0  0.6  90528  6696 ?        S    02:50   0:00 qmgr -l -t unix -u
+root      3086  0.0  1.0 714420 10680 ?        Ssl  02:50   0:00 /usr/bin/amazon-ssm-agent
+root      3093  0.0  0.7 216536  7280 ?        Ssl  02:50   0:00 /usr/sbin/rsyslogd -n
+root      3097  0.0  0.7 110852  7808 ?        Ss   02:50   0:00 /usr/sbin/sshd -D
+root      3101  0.0  0.3 135092  3208 ?        Ss   02:50   0:00 /usr/sbin/crond -n
+root      3105  0.0  0.2  27896  2072 ?        Ss   02:50   0:00 /usr/sbin/atd -f
+root      3125  0.0  0.1 121312  1708 tty1     Ss+  02:50   0:00 /sbin/agetty --noclear tty1 linux
+root      3126  0.0  0.2 120960  2264 ttyS0    Ss+  02:50   0:00 /sbin/agetty --keep-baud 115200,38400,9600 ttyS0 vt220
+root      3158  0.0  0.0   4272   108 ?        Ss   02:50   0:00 /usr/sbin/acpid
+root      3162  0.0  1.6 723848 16112 ?        Sl   02:50   0:00 /usr/bin/ssm-agent-worker
+root      3188  0.0  0.8 148520  8696 ?        Ss   02:50   0:00 sshd: ec2-user [priv]
+ec2-user  3582  0.0  0.4 148520  4696 ?        S    02:50   0:00 sshd: ec2-user@pts/0
+ec2-user  3583  0.0  0.4 124740  3972 pts/0    Ss   02:50   0:00 -bash
+root      3612  0.0  0.7 239816  7124 pts/0    S    02:51   0:00 sudo su -
+root      3613  0.0  0.4 190492  4008 pts/0    S    02:51   0:00 su -
+root      3614  0.0  0.3 124736  3876 pts/0    S+   02:51   0:00 -bash
+root      3643  0.0  3.1 1369920 30936 ?       Ssl  02:52   0:02 /usr/bin/containerd
+root      3655  0.2  7.0 1468316 69700 ?       Ssl  02:52   0:08 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --default-
+root      3678  0.0  0.0   4228   700 ?        S    02:52   0:00 bpfilter_umh
+root      3848  0.0  0.0      0     0 ?        I    02:56   0:00 [kworker/u30:0-e]
+root      3869  0.0  1.0 712468 10012 ?        Sl   02:56   0:00 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 5fe42f4a1582fb84f56d4407233d
+root      3890  0.0  0.2  11844  2856 pts/0    Ss+  02:56   0:00 /bin/bash
+root      4228  0.0  0.9 712212  9424 ?        Sl   03:06   0:00 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 5dc1afc38b51968a8ed075dbe816
+root      4251  0.0  0.2  11844  2912 pts/0    Ss+  03:06   0:00 /bin/bash
+root      4409  0.0  0.8 148520  8636 ?        Ss   03:20   0:00 sshd: ec2-user [priv]
+ec2-user  4803  0.0  0.4 148520  4656 ?        S    03:20   0:00 sshd: ec2-user@pts/1
+ec2-user  4804  0.0  0.3 124740  3864 pts/1    Ss   03:20   0:00 -bash
+root      4828  0.0  0.7 239816  7072 pts/1    S    03:21   0:00 sudo su -
+root      4829  0.0  0.4 190492  3960 pts/1    S    03:21   0:00 su -
+root      4830  0.0  0.4 124868  4364 pts/1    S    03:21   0:00 -bash
+root      5088  0.0  0.0      0     0 ?        I    03:30   0:00 [kworker/0:0-eve]
+root      5115  0.0  0.0      0     0 ?        I    03:32   0:00 [kworker/u30:2-e]
+root      5122  0.0  0.2 1012672 2828 ?        Sl   03:32   0:00 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8888 -container-ip 1
+root      5127  0.0  0.3 1164232 3140 ?        Sl   03:32   0:00 /usr/bin/docker-proxy -proto tcp -host-ip :: -host-port 8888 -container-ip 172.17
+root      5140  0.0  0.9 712468  9644 ?        Sl   03:32   0:00 /usr/bin/containerd-shim-runc-v2 -namespace moby -id b1a9ebbcb9d182c0d9baec07ab76
+root      5163  0.0  0.3  11844  2988 pts/0    Ss+  03:32   0:00 /bin/bash
+root      5213  0.0  0.7 253352  7496 ?        Ss   03:35   0:00 httpd
+apache    5214  0.0  0.6 294496  6372 ?        Sl   03:35   0:00 httpd
+apache    5215  0.0  0.7 294496  6992 ?        Sl   03:35   0:00 httpd
+apache    5216  0.0  0.6 491168  6372 ?        Sl   03:35   0:00 httpd
+apache    5217  0.0  0.6 294496  6372 ?        Sl   03:35   0:00 httpd
+apache    5218  0.0  0.6 294496  6372 ?        Sl   03:35   0:00 httpd
+root      5265  0.0  0.0      0     0 ?        I    03:39   0:00 [kworker/0:2-eve]
+root      5267  0.0  0.3 162320  3832 pts/1    R+   03:39   0:00 ps -aux
+[root@ip-172-31-45-145 /]# docker ps
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS          PORTS                                   NAMES
+b1a9ebbcb9d1   centos:7       "/bin/bash"   8 minutes ago    Up 8 minutes    0.0.0.0:8888->80/tcp, :::8888->80/tcp   server
+5dc1afc38b51   mak:version1   "/bin/bash"   34 minutes ago   Up 34 minutes                                           madhu
+5fe42f4a1582   centos:7       "/bin/bash"   44 minutes ago   Up 44 minutes                                           myos4
+[root@ip-172-31-45-145 /]# curl http://172.31.45.145
+This is morning revision of docker.
+[root@ip-172-31-45-145 /]# ls
+bin  boot  dev  etc  home  lib  lib64  local  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+[root@ip-172-31-45-145 /]# docker attach server
+[root@b1a9ebbcb9d1 /]# rpm -q httpd
+package httpd is not installed
+[root@b1a9ebbcb9d1 /]# yum install httpd
+Loaded plugins: fastestmirror, ovl
+Determining fastest mirrors
+ * base: download.cf.centos.org
+ * extras: download.cf.centos.org
+ * updates: download.cf.centos.org
+base                                                                                                                       | 3.6 kB  00:00:00     
+extras                                                                                                                     | 2.9 kB  00:00:00     
+updates                                                                                                                    | 2.9 kB  00:00:00     
+(1/4): extras/7/x86_64/primary_db                                                                                          | 249 kB  00:00:00     
+(2/4): base/7/x86_64/group_gz                                                                                              | 153 kB  00:00:00     
+(3/4): updates/7/x86_64/primary_db                                                                                         |  19 MB  00:00:00     
+(4/4): base/7/x86_64/primary_db                                                                                            | 6.1 MB  00:00:02     
+Resolving Dependencies
+--> Running transaction check
+---> Package httpd.x86_64 0:2.4.6-97.el7.centos.5 will be installed
+--> Processing Dependency: httpd-tools = 2.4.6-97.el7.centos.5 for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Processing Dependency: system-logos >= 7.92.1-1 for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Processing Dependency: /etc/mime.types for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Processing Dependency: libaprutil-1.so.0()(64bit) for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Processing Dependency: libapr-1.so.0()(64bit) for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Running transaction check
+---> Package apr.x86_64 0:1.4.8-7.el7 will be installed
+---> Package apr-util.x86_64 0:1.5.2-6.el7 will be installed
+---> Package centos-logos.noarch 0:70.0.6-3.el7.centos will be installed
+---> Package httpd-tools.x86_64 0:2.4.6-97.el7.centos.5 will be installed
+---> Package mailcap.noarch 0:2.1.41-2.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                            Arch                         Version                                      Repository                     Size
+==================================================================================================================================================
+Installing:
+ httpd                              x86_64                       2.4.6-97.el7.centos.5                        updates                       2.7 M
+Installing for dependencies:
+ apr                                x86_64                       1.4.8-7.el7                                  base                          104 k
+ apr-util                           x86_64                       1.5.2-6.el7                                  base                           92 k
+ centos-logos                       noarch                       70.0.6-3.el7.centos                          base                           21 M
+ httpd-tools                        x86_64                       2.4.6-97.el7.centos.5                        updates                        94 k
+ mailcap                            noarch                       2.1.41-2.el7                                 base                           31 k
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package (+5 Dependent packages)
+
+Total download size: 24 M
+Installed size: 32 M
+Is this ok [y/d/N]: y
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/base/packages/apr-util-1.5.2-6.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Public key for apr-util-1.5.2-6.el7.x86_64.rpm is not installed
+(1/6): apr-util-1.5.2-6.el7.x86_64.rpm                                                                                     |  92 kB  00:00:00     
+(2/6): apr-1.4.8-7.el7.x86_64.rpm                                                                                          | 104 kB  00:00:00     
+(3/6): mailcap-2.1.41-2.el7.noarch.rpm                                                                                     |  31 kB  00:00:00     
+(4/6): centos-logos-70.0.6-3.el7.centos.noarch.rpm                                                                         |  21 MB  00:00:00     
+Public key for httpd-tools-2.4.6-97.el7.centos.5.x86_64.rpm is not installed==============================      ]  25 MB/s |  22 MB  00:00:00 ETA 
+(5/6): httpd-tools-2.4.6-97.el7.centos.5.x86_64.rpm                                                                        |  94 kB  00:00:00     
+(6/6): httpd-2.4.6-97.el7.centos.5.x86_64.rpm                                                                              | 2.7 MB  00:00:00     
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                              27 MB/s |  24 MB  00:00:00     
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-9.2009.0.el7.centos.x86_64 (@CentOS)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : apr-1.4.8-7.el7.x86_64                                                                                                         1/6 
+  Installing : apr-util-1.5.2-6.el7.x86_64                                                                                                    2/6 
+  Installing : httpd-tools-2.4.6-97.el7.centos.5.x86_64                                                                                       3/6 
+  Installing : centos-logos-70.0.6-3.el7.centos.noarch                                                                                        4/6 
+  Installing : mailcap-2.1.41-2.el7.noarch                                                                                                    5/6 
+  Installing : httpd-2.4.6-97.el7.centos.5.x86_64                                                                                             6/6 
+  Verifying  : httpd-tools-2.4.6-97.el7.centos.5.x86_64                                                                                       1/6 
+  Verifying  : mailcap-2.1.41-2.el7.noarch                                                                                                    2/6 
+  Verifying  : apr-1.4.8-7.el7.x86_64                                                                                                         3/6 
+  Verifying  : apr-util-1.5.2-6.el7.x86_64                                                                                                    4/6 
+  Verifying  : httpd-2.4.6-97.el7.centos.5.x86_64                                                                                             5/6 
+  Verifying  : centos-logos-70.0.6-3.el7.centos.noarch                                                                                        6/6 
+
+Installed:
+  httpd.x86_64 0:2.4.6-97.el7.centos.5                                                                                                            
+
+Dependency Installed:
+  apr.x86_64 0:1.4.8-7.el7                             apr-util.x86_64 0:1.5.2-6.el7           centos-logos.noarch 0:70.0.6-3.el7.centos          
+  httpd-tools.x86_64 0:2.4.6-97.el7.centos.5           mailcap.noarch 0:2.1.41-2.el7          
+
+Complete!
+[root@b1a9ebbcb9d1 /]# ifconfig
+bash: ifconfig: command not found
+[root@b1a9ebbcb9d1 /]# yum install net-tools
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: download.cf.centos.org
+ * extras: download.cf.centos.org
+ * updates: download.cf.centos.org
+Resolving Dependencies
+--> Running transaction check
+---> Package net-tools.x86_64 0:2.0-0.25.20131004git.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                          Arch                          Version                                         Repository                   Size
+==================================================================================================================================================
+Installing:
+ net-tools                        x86_64                        2.0-0.25.20131004git.el7                        base                        306 k
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package
+
+Total download size: 306 k
+Installed size: 917 k
+Is this ok [y/d/N]: y
+Downloading packages:
+net-tools-2.0-0.25.20131004git.el7.x86_64.rpm                                                                              | 306 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64                                                                                      1/1 
+  Verifying  : net-tools-2.0-0.25.20131004git.el7.x86_64                                                                                      1/1 
+
+Installed:
+  net-tools.x86_64 0:2.0-0.25.20131004git.el7                                                                                                     
+
+Complete!
+[root@b1a9ebbcb9d1 /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 4685  bytes 52677524 (50.2 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2917  bytes 233071 (227.6 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@b1a9ebbcb9d1 /]# ps -aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.3  11844  2988 pts/0    Ss   03:32   0:00 /bin/bash
+root        76  0.0  0.3  51748  3388 pts/0    R+   03:52   0:00 ps -aux
+[root@b1a9ebbcb9d1 /]# httpd
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.4. Set the 'ServerName' directive globally to suppress this message
+[root@b1a9ebbcb9d1 /]# ps -aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.3  11844  2988 pts/0    Ss   03:32   0:00 /bin/bash
+root        78  0.0  0.6 224096  6024 ?        Ss   03:52   0:00 httpd
+apache      79  0.0  0.6 224096  6020 ?        S    03:52   0:00 httpd
+apache      80  0.0  0.6 224096  6020 ?        S    03:52   0:00 httpd
+apache      81  0.0  0.6 224096  6020 ?        S    03:52   0:00 httpd
+apache      82  0.0  0.6 224096  6020 ?        S    03:52   0:00 httpd
+apache      83  0.0  0.6 224096  6020 ?        S    03:52   0:00 httpd
+root        84  0.0  0.3  51748  3384 pts/0    R+   03:52   0:00 ps -aux
+[root@b1a9ebbcb9d1 /]# cd var/www/html
+[root@b1a9ebbcb9d1 html]# ls
+[root@b1a9ebbcb9d1 html]# cat > index.html
+Hi This is Double process.^C
+[root@b1a9ebbcb9d1 html]# cat index.html
+[root@b1a9ebbcb9d1 html]# cat > index.html
+Hi This is Double Process
+^C
+[root@b1a9ebbcb9d1 html]# cat index.html
+Hi This is Double Process
+[root@b1a9ebbcb9d1 html]# 

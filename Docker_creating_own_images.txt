@@ -1,0 +1,778 @@
+[root@ip-172-31-45-145 ~]# systemctl start docker
+#########################################################################################################################################################
+[root@ip-172-31-45-145 ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+#########################################################################################################################################################
+[root@ip-172-31-45-145 ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS                      PORTS     NAMES
+5463034163b3   mysql:latest   "docker-entrypoint.s…"   12 hours ago   Exited (0) 9 hours ago                DB
+da4b69cf6b0a   wordpress      "docker-entrypoint.s…"   12 hours ago   Exited (0) 9 hours ago                myword
+159eb9286a86   centos:7       "/bin/bash"              22 hours ago   Exited (137) 21 hours ago             webpage
+2e5040e651d7   centos:7       "/bin/bash"              23 hours ago   Exited (137) 21 hours ago             myos3
+2695133fd790   centos:7       "/bin/bash"              35 hours ago   Exited (137) 35 hours ago             myos2
+c9f861e0d1c4   centos:7       "/bin/bash"              36 hours ago   Exited (137) 36 hours ago             myos
+#########################################################################################################################################################
+[root@ip-172-31-45-145 ~]# docker run -it --name myos4 centos:7
+#########################################################################################################################################################
+[root@5fe42f4a1582 /]# docker ps
+bash: docker: command not found
+#########################################################################################################################################################
+[root@5fe42f4a1582 /]# rpm -q net-tools
+package net-tools is not installed
+
+[root@5fe42f4a1582 /]# rpm -q httpd    
+package httpd is not installed
+
+[root@5fe42f4a1582 /]# rpm -q python3
+package python3 is not installed
+#########################################################################################################################################################
+[root@5fe42f4a1582 /]# yum install net-tools
+Loaded plugins: fastestmirror, ovl
+Determining fastest mirrors
+ * base: download.cf.centos.org
+ * extras: download.cf.centos.org
+ * updates: download.cf.centos.org
+base                                                                                                                       | 3.6 kB  00:00:00     
+extras                                                                                                                     | 2.9 kB  00:00:00     
+updates                                                                                                                    | 2.9 kB  00:00:00     
+(1/4): base/7/x86_64/group_gz                                                                                              | 153 kB  00:00:00     
+(2/4): extras/7/x86_64/primary_db                                                                                          | 249 kB  00:00:00     
+(3/4): updates/7/x86_64/primary_db                                                                                         |  19 MB  00:00:00     
+(4/4): base/7/x86_64/primary_db                                                                                            | 6.1 MB  00:00:02     
+Resolving Dependencies
+--> Running transaction check
+---> Package net-tools.x86_64 0:2.0-0.25.20131004git.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                          Arch                          Version                                         Repository                   Size
+==================================================================================================================================================
+Installing:
+ net-tools                        x86_64                        2.0-0.25.20131004git.el7                        base                        306 k
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package
+
+Total download size: 306 k
+Installed size: 917 k
+Is this ok [y/d/N]: y
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/base/packages/net-tools-2.0-0.25.20131004git.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Public key for net-tools-2.0-0.25.20131004git.el7.x86_64.rpm is not installed
+net-tools-2.0-0.25.20131004git.el7.x86_64.rpm                                                                              | 306 kB  00:00:00     
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-9.2009.0.el7.centos.x86_64 (@CentOS)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64                                                                                      1/1 
+  Verifying  : net-tools-2.0-0.25.20131004git.el7.x86_64                                                                                      1/1 
+
+Installed:
+  net-tools.x86_64 0:2.0-0.25.20131004git.el7                                                                                                     
+
+Complete!
+#########################################################################################################################################################
+[root@5fe42f4a1582 /]# yum install httpd    
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: download.cf.centos.org
+ * extras: download.cf.centos.org
+ * updates: download.cf.centos.org
+Resolving Dependencies
+--> Running transaction check
+---> Package httpd.x86_64 0:2.4.6-97.el7.centos.5 will be installed
+--> Processing Dependency: httpd-tools = 2.4.6-97.el7.centos.5 for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Processing Dependency: system-logos >= 7.92.1-1 for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Processing Dependency: /etc/mime.types for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Processing Dependency: libaprutil-1.so.0()(64bit) for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Processing Dependency: libapr-1.so.0()(64bit) for package: httpd-2.4.6-97.el7.centos.5.x86_64
+--> Running transaction check
+---> Package apr.x86_64 0:1.4.8-7.el7 will be installed
+---> Package apr-util.x86_64 0:1.5.2-6.el7 will be installed
+---> Package centos-logos.noarch 0:70.0.6-3.el7.centos will be installed
+---> Package httpd-tools.x86_64 0:2.4.6-97.el7.centos.5 will be installed
+---> Package mailcap.noarch 0:2.1.41-2.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                            Arch                         Version                                      Repository                     Size
+==================================================================================================================================================
+Installing:
+ httpd                              x86_64                       2.4.6-97.el7.centos.5                        updates                       2.7 M
+Installing for dependencies:
+ apr                                x86_64                       1.4.8-7.el7                                  base                          104 k
+ apr-util                           x86_64                       1.5.2-6.el7                                  base                           92 k
+ centos-logos                       noarch                       70.0.6-3.el7.centos                          base                           21 M
+ httpd-tools                        x86_64                       2.4.6-97.el7.centos.5                        updates                        94 k
+ mailcap                            noarch                       2.1.41-2.el7                                 base                           31 k
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package (+5 Dependent packages)
+
+Total download size: 24 M
+Installed size: 32 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/6): apr-1.4.8-7.el7.x86_64.rpm                                                                                          | 104 kB  00:00:00     
+(2/6): apr-util-1.5.2-6.el7.x86_64.rpm                                                                                     |  92 kB  00:00:00     
+(3/6): mailcap-2.1.41-2.el7.noarch.rpm                                                                                     |  31 kB  00:00:00     
+(4/6): centos-logos-70.0.6-3.el7.centos.noarch.rpm                                                                         |  21 MB  00:00:00     
+(5/6): httpd-2.4.6-97.el7.centos.5.x86_64.rpm                                                                              | 2.7 MB  00:00:00     
+(6/6): httpd-tools-2.4.6-97.el7.centos.5.x86_64.rpm                                                                        |  94 kB  00:00:00     
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                              29 MB/s |  24 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : apr-1.4.8-7.el7.x86_64                                                                                                         1/6 
+  Installing : apr-util-1.5.2-6.el7.x86_64                                                                                                    2/6 
+  Installing : httpd-tools-2.4.6-97.el7.centos.5.x86_64                                                                                       3/6 
+  Installing : centos-logos-70.0.6-3.el7.centos.noarch                                                                                        4/6 
+  Installing : mailcap-2.1.41-2.el7.noarch                                                                                                    5/6 
+  Installing : httpd-2.4.6-97.el7.centos.5.x86_64                                                                                             6/6 
+  Verifying  : httpd-tools-2.4.6-97.el7.centos.5.x86_64                                                                                       1/6 
+  Verifying  : mailcap-2.1.41-2.el7.noarch                                                                                                    2/6 
+  Verifying  : apr-1.4.8-7.el7.x86_64                                                                                                         3/6 
+  Verifying  : apr-util-1.5.2-6.el7.x86_64                                                                                                    4/6 
+  Verifying  : httpd-2.4.6-97.el7.centos.5.x86_64                                                                                             5/6 
+  Verifying  : centos-logos-70.0.6-3.el7.centos.noarch                                                                                        6/6 
+
+Installed:
+  httpd.x86_64 0:2.4.6-97.el7.centos.5                                                                                                            
+
+Dependency Installed:
+  apr.x86_64 0:1.4.8-7.el7                             apr-util.x86_64 0:1.5.2-6.el7           centos-logos.noarch 0:70.0.6-3.el7.centos          
+  httpd-tools.x86_64 0:2.4.6-97.el7.centos.5           mailcap.noarch 0:2.1.41-2.el7          
+
+Complete!
+#########################################################################################################################################################
+[root@5fe42f4a1582 /]# yum install python3
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: download.cf.centos.org
+ * extras: download.cf.centos.org
+ * updates: download.cf.centos.org
+Resolving Dependencies
+--> Running transaction check
+---> Package python3.x86_64 0:3.6.8-18.el7 will be installed
+--> Processing Dependency: python3-libs(x86-64) = 3.6.8-18.el7 for package: python3-3.6.8-18.el7.x86_64
+--> Processing Dependency: python3-setuptools for package: python3-3.6.8-18.el7.x86_64
+--> Processing Dependency: python3-pip for package: python3-3.6.8-18.el7.x86_64
+--> Processing Dependency: libpython3.6m.so.1.0()(64bit) for package: python3-3.6.8-18.el7.x86_64
+--> Running transaction check
+---> Package python3-libs.x86_64 0:3.6.8-18.el7 will be installed
+--> Processing Dependency: libtirpc.so.1()(64bit) for package: python3-libs-3.6.8-18.el7.x86_64
+---> Package python3-pip.noarch 0:9.0.3-8.el7 will be installed
+---> Package python3-setuptools.noarch 0:39.2.0-10.el7 will be installed
+--> Running transaction check
+---> Package libtirpc.x86_64 0:0.2.4-0.16.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                                  Arch                         Version                                Repository                     Size
+==================================================================================================================================================
+Installing:
+ python3                                  x86_64                       3.6.8-18.el7                           updates                        70 k
+Installing for dependencies:
+ libtirpc                                 x86_64                       0.2.4-0.16.el7                         base                           89 k
+ python3-libs                             x86_64                       3.6.8-18.el7                           updates                       6.9 M
+ python3-pip                              noarch                       9.0.3-8.el7                            base                          1.6 M
+ python3-setuptools                       noarch                       39.2.0-10.el7                          base                          629 k
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package (+4 Dependent packages)
+
+Total download size: 9.3 M
+Installed size: 48 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/5): libtirpc-0.2.4-0.16.el7.x86_64.rpm                                                                                  |  89 kB  00:00:00     
+(2/5): python3-setuptools-39.2.0-10.el7.noarch.rpm                                                                         | 629 kB  00:00:00     
+(3/5): python3-3.6.8-18.el7.x86_64.rpm                                                                                     |  70 kB  00:00:00     
+(4/5): python3-libs-3.6.8-18.el7.x86_64.rpm                                                                                | 6.9 MB  00:00:00     
+(5/5): python3-pip-9.0.3-8.el7.noarch.rpm                                                                                  | 1.6 MB  00:00:00     
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                              14 MB/s | 9.3 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libtirpc-0.2.4-0.16.el7.x86_64                                                                                                 1/5 
+  Installing : python3-setuptools-39.2.0-10.el7.noarch                                                                                        2/5 
+  Installing : python3-pip-9.0.3-8.el7.noarch                                                                                                 3/5 
+  Installing : python3-3.6.8-18.el7.x86_64                                                                                                    4/5 
+  Installing : python3-libs-3.6.8-18.el7.x86_64                                                                                               5/5 
+  Verifying  : libtirpc-0.2.4-0.16.el7.x86_64                                                                                                 1/5 
+  Verifying  : python3-setuptools-39.2.0-10.el7.noarch                                                                                        2/5 
+  Verifying  : python3-libs-3.6.8-18.el7.x86_64                                                                                               3/5 
+  Verifying  : python3-3.6.8-18.el7.x86_64                                                                                                    4/5 
+  Verifying  : python3-pip-9.0.3-8.el7.noarch                                                                                                 5/5 
+
+Installed:
+  python3.x86_64 0:3.6.8-18.el7                                                                                                                   
+
+Dependency Installed:
+  libtirpc.x86_64 0:0.2.4-0.16.el7 python3-libs.x86_64 0:3.6.8-18.el7 python3-pip.noarch 0:9.0.3-8.el7 python3-setuptools.noarch 0:39.2.0-10.el7
+
+Complete!
+#########################################################################################################################################################
+[root@5fe42f4a1582 /]# rpm -q net-tools
+net-tools-2.0-0.25.20131004git.el7.x86_64
+
+[root@5fe42f4a1582 /]# rpm -q httpd
+httpd-2.4.6-97.el7.centos.5.x86_64
+
+[root@5fe42f4a1582 /]# rpm -q python3
+python3-3.6.8-18.el7.x86_64
+
+[root@5fe42f4a1582 /]# rpm -q docker 
+package docker is not installed
+-------------------------------------------------
+[root@5fe42f4a1582 /]# yum install docker 
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: download.cf.centos.org
+ * extras: download.cf.centos.org
+ * updates: download.cf.centos.org
+Resolving Dependencies
+--> Running transaction check
+---> Package docker.x86_64 2:1.13.1-209.git7d71120.el7.centos will be installed
+--> Processing Dependency: docker-common = 2:1.13.1-209.git7d71120.el7.centos for package: 2:docker-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: docker-client = 2:1.13.1-209.git7d71120.el7.centos for package: 2:docker-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: subscription-manager-rhsm-certificates for package: 2:docker-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: libseccomp.so.2()(64bit) for package: 2:docker-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Running transaction check
+---> Package docker-client.x86_64 2:1.13.1-209.git7d71120.el7.centos will be installed
+---> Package docker-common.x86_64 2:1.13.1-209.git7d71120.el7.centos will be installed
+--> Processing Dependency: skopeo-containers >= 1:0.1.26-2 for package: 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: oci-umount >= 2:2.3.3-3 for package: 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: oci-systemd-hook >= 1:0.1.4-9 for package: 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: oci-register-machine >= 1:0-5.13 for package: 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: lvm2 >= 2.02.112 for package: 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: container-storage-setup >= 0.9.0-1 for package: 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: container-selinux >= 2:2.51-1 for package: 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: xfsprogs for package: 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64
+--> Processing Dependency: atomic-registries for package: 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64
+---> Package libseccomp.x86_64 0:2.3.1-4.el7 will be installed
+---> Package subscription-manager-rhsm-certificates.x86_64 0:1.24.51-1.el7.centos will be installed
+--> Running transaction check
+---> Package atomic-registries.x86_64 1:1.22.1-33.gitb507039.el7_8 will be installed
+--> Processing Dependency: python-yaml for package: 1:atomic-registries-1.22.1-33.gitb507039.el7_8.x86_64
+--> Processing Dependency: python-setuptools for package: 1:atomic-registries-1.22.1-33.gitb507039.el7_8.x86_64
+--> Processing Dependency: python-pytoml for package: 1:atomic-registries-1.22.1-33.gitb507039.el7_8.x86_64
+---> Package container-selinux.noarch 2:2.119.2-1.911c772.el7_8 will be installed
+--> Processing Dependency: selinux-policy-targeted >= 3.13.1-216.el7 for package: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+--> Processing Dependency: selinux-policy-base >= 3.13.1-216.el7 for package: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+--> Processing Dependency: selinux-policy >= 3.13.1-216.el7 for package: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+--> Processing Dependency: policycoreutils >= 2.5-11 for package: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+--> Processing Dependency: policycoreutils-python for package: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+--> Processing Dependency: libselinux-utils for package: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+---> Package container-storage-setup.noarch 0:0.11.0-2.git5eaf76c.el7 will be installed
+--> Processing Dependency: parted for package: container-storage-setup-0.11.0-2.git5eaf76c.el7.noarch
+---> Package containers-common.x86_64 1:0.1.40-11.el7_8 will be installed
+--> Processing Dependency: subscription-manager for package: 1:containers-common-0.1.40-11.el7_8.x86_64
+--> Processing Dependency: slirp4netns for package: 1:containers-common-0.1.40-11.el7_8.x86_64
+--> Processing Dependency: fuse-overlayfs for package: 1:containers-common-0.1.40-11.el7_8.x86_64
+---> Package lvm2.x86_64 7:2.02.187-6.el7_9.5 will be installed
+--> Processing Dependency: lvm2-libs = 7:2.02.187-6.el7_9.5 for package: 7:lvm2-2.02.187-6.el7_9.5.x86_64
+--> Processing Dependency: device-mapper-persistent-data >= 0.7.0-0.1.rc6 for package: 7:lvm2-2.02.187-6.el7_9.5.x86_64
+--> Processing Dependency: liblvm2app.so.2.2(Base)(64bit) for package: 7:lvm2-2.02.187-6.el7_9.5.x86_64
+--> Processing Dependency: libdevmapper-event.so.1.02(Base)(64bit) for package: 7:lvm2-2.02.187-6.el7_9.5.x86_64
+--> Processing Dependency: libaio.so.1(LIBAIO_0.4)(64bit) for package: 7:lvm2-2.02.187-6.el7_9.5.x86_64
+--> Processing Dependency: libaio.so.1(LIBAIO_0.1)(64bit) for package: 7:lvm2-2.02.187-6.el7_9.5.x86_64
+--> Processing Dependency: liblvm2app.so.2.2()(64bit) for package: 7:lvm2-2.02.187-6.el7_9.5.x86_64
+--> Processing Dependency: libdevmapper-event.so.1.02()(64bit) for package: 7:lvm2-2.02.187-6.el7_9.5.x86_64
+--> Processing Dependency: libaio.so.1()(64bit) for package: 7:lvm2-2.02.187-6.el7_9.5.x86_64
+---> Package oci-register-machine.x86_64 1:0-6.git2b44233.el7 will be installed
+---> Package oci-systemd-hook.x86_64 1:0.2.0-1.git05e6923.el7_6 will be installed
+--> Processing Dependency: libyajl.so.2()(64bit) for package: 1:oci-systemd-hook-0.2.0-1.git05e6923.el7_6.x86_64
+---> Package oci-umount.x86_64 2:2.5-3.el7 will be installed
+---> Package xfsprogs.x86_64 0:4.5.0-22.el7 will be installed
+--> Running transaction check
+---> Package PyYAML.x86_64 0:3.10-11.el7 will be installed
+--> Processing Dependency: libyaml-0.so.2()(64bit) for package: PyYAML-3.10-11.el7.x86_64
+---> Package device-mapper-event-libs.x86_64 7:1.02.170-6.el7_9.5 will be installed
+---> Package device-mapper-persistent-data.x86_64 0:0.8.5-3.el7_9.2 will be installed
+---> Package fuse-overlayfs.x86_64 0:0.7.2-6.el7_8 will be installed
+--> Processing Dependency: libfuse3.so.3(FUSE_3.2)(64bit) for package: fuse-overlayfs-0.7.2-6.el7_8.x86_64
+--> Processing Dependency: libfuse3.so.3(FUSE_3.0)(64bit) for package: fuse-overlayfs-0.7.2-6.el7_8.x86_64
+--> Processing Dependency: libfuse3.so.3()(64bit) for package: fuse-overlayfs-0.7.2-6.el7_8.x86_64
+---> Package libaio.x86_64 0:0.3.109-13.el7 will be installed
+---> Package libselinux-utils.x86_64 0:2.5-15.el7 will be installed
+---> Package lvm2-libs.x86_64 7:2.02.187-6.el7_9.5 will be installed
+--> Processing Dependency: device-mapper-event = 7:1.02.170-6.el7_9.5 for package: 7:lvm2-libs-2.02.187-6.el7_9.5.x86_64
+---> Package parted.x86_64 0:3.1-32.el7 will be installed
+---> Package policycoreutils.x86_64 0:2.5-34.el7 will be installed
+---> Package policycoreutils-python.x86_64 0:2.5-34.el7 will be installed
+--> Processing Dependency: setools-libs >= 3.3.8-4 for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libsemanage-python >= 2.5-14 for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: audit-libs-python >= 2.1.3-4 for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: python-IPy for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libselinux-python for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libqpol.so.1(VERS_1.4)(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libqpol.so.1(VERS_1.2)(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libcgroup for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libapol.so.4(VERS_4.0)(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: checkpolicy for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libqpol.so.1()(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libapol.so.4()(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+---> Package python-pytoml.noarch 0:0.1.14-1.git7dea353.el7 will be installed
+---> Package python-setuptools.noarch 0:0.9.8-7.el7 will be installed
+--> Processing Dependency: python-backports-ssl_match_hostname for package: python-setuptools-0.9.8-7.el7.noarch
+---> Package selinux-policy.noarch 0:3.13.1-268.el7_9.2 will be installed
+---> Package selinux-policy-targeted.noarch 0:3.13.1-268.el7_9.2 will be installed
+---> Package slirp4netns.x86_64 0:0.4.3-4.el7_8 will be installed
+---> Package subscription-manager.x86_64 0:1.24.51-1.el7.centos will be installed
+--> Processing Dependency: subscription-manager-rhsm = 1.24.51 for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+--> Processing Dependency: python-dmidecode >= 3.12.2-2 for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+--> Processing Dependency: virt-what for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+--> Processing Dependency: usermode for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+--> Processing Dependency: python-syspurpose for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+--> Processing Dependency: python-six for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+--> Processing Dependency: python-inotify for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+--> Processing Dependency: python-ethtool for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+--> Processing Dependency: python-decorator for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+--> Processing Dependency: python-dateutil for package: subscription-manager-1.24.51-1.el7.centos.x86_64
+---> Package yajl.x86_64 0:2.0.4-4.el7 will be installed
+--> Running transaction check
+---> Package audit-libs-python.x86_64 0:2.8.5-4.el7 will be installed
+---> Package checkpolicy.x86_64 0:2.5-8.el7 will be installed
+---> Package device-mapper-event.x86_64 7:1.02.170-6.el7_9.5 will be installed
+--> Processing Dependency: device-mapper = 7:1.02.170-6.el7_9.5 for package: 7:device-mapper-event-1.02.170-6.el7_9.5.x86_64
+---> Package fuse3-libs.x86_64 0:3.6.1-4.el7 will be installed
+---> Package libcgroup.x86_64 0:0.41-21.el7 will be installed
+---> Package libselinux-python.x86_64 0:2.5-15.el7 will be installed
+---> Package libsemanage-python.x86_64 0:2.5-14.el7 will be installed
+---> Package libyaml.x86_64 0:0.1.4-11.el7_0 will be installed
+---> Package python-IPy.noarch 0:0.75-6.el7 will be installed
+---> Package python-backports-ssl_match_hostname.noarch 0:3.5.0.1-1.el7 will be installed
+--> Processing Dependency: python-ipaddress for package: python-backports-ssl_match_hostname-3.5.0.1-1.el7.noarch
+--> Processing Dependency: python-backports for package: python-backports-ssl_match_hostname-3.5.0.1-1.el7.noarch
+---> Package python-dateutil.noarch 0:1.5-7.el7 will be installed
+---> Package python-decorator.noarch 0:3.4.0-3.el7 will be installed
+---> Package python-dmidecode.x86_64 0:3.12.2-4.el7 will be installed
+---> Package python-ethtool.x86_64 0:0.8-8.el7 will be installed
+--> Processing Dependency: libnl.so.1()(64bit) for package: python-ethtool-0.8-8.el7.x86_64
+---> Package python-inotify.noarch 0:0.9.4-4.el7 will be installed
+---> Package python-six.noarch 0:1.9.0-2.el7 will be installed
+---> Package python-syspurpose.x86_64 0:1.24.51-1.el7.centos will be installed
+---> Package setools-libs.x86_64 0:3.3.8-4.el7 will be installed
+---> Package subscription-manager-rhsm.x86_64 0:1.24.51-1.el7.centos will be installed
+---> Package usermode.x86_64 0:1.111-6.el7 will be installed
+---> Package virt-what.x86_64 0:1.18-4.el7_9.1 will be installed
+--> Processing Dependency: which for package: virt-what-1.18-4.el7_9.1.x86_64
+--> Processing Dependency: dmidecode for package: virt-what-1.18-4.el7_9.1.x86_64
+--> Running transaction check
+---> Package device-mapper.x86_64 7:1.02.170-6.el7 will be updated
+--> Processing Dependency: device-mapper = 7:1.02.170-6.el7 for package: 7:device-mapper-libs-1.02.170-6.el7.x86_64
+---> Package device-mapper.x86_64 7:1.02.170-6.el7_9.5 will be an update
+---> Package dmidecode.x86_64 1:3.2-5.el7_9.1 will be installed
+---> Package libnl.x86_64 0:1.1.4-3.el7 will be installed
+---> Package python-backports.x86_64 0:1.0-8.el7 will be installed
+---> Package python-ipaddress.noarch 0:1.0.16-2.el7 will be installed
+---> Package which.x86_64 0:2.20-7.el7 will be installed
+--> Running transaction check
+---> Package device-mapper-libs.x86_64 7:1.02.170-6.el7 will be updated
+---> Package device-mapper-libs.x86_64 7:1.02.170-6.el7_9.5 will be an update
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                                            Arch               Version                                          Repository           Size
+==================================================================================================================================================
+Installing:
+ docker                                             x86_64             2:1.13.1-209.git7d71120.el7.centos               extras               17 M
+Installing for dependencies:
+ PyYAML                                             x86_64             3.10-11.el7                                      base                153 k
+ atomic-registries                                  x86_64             1:1.22.1-33.gitb507039.el7_8                     extras               36 k
+ audit-libs-python                                  x86_64             2.8.5-4.el7                                      base                 76 k
+ checkpolicy                                        x86_64             2.5-8.el7                                        base                295 k
+ container-selinux                                  noarch             2:2.119.2-1.911c772.el7_8                        extras               40 k
+ container-storage-setup                            noarch             0.11.0-2.git5eaf76c.el7                          extras               35 k
+ containers-common                                  x86_64             1:0.1.40-11.el7_8                                extras               43 k
+ device-mapper-event                                x86_64             7:1.02.170-6.el7_9.5                             updates             192 k
+ device-mapper-event-libs                           x86_64             7:1.02.170-6.el7_9.5                             updates             192 k
+ device-mapper-persistent-data                      x86_64             0.8.5-3.el7_9.2                                  updates             423 k
+ dmidecode                                          x86_64             1:3.2-5.el7_9.1                                  updates              82 k
+ docker-client                                      x86_64             2:1.13.1-209.git7d71120.el7.centos               extras              3.9 M
+ docker-common                                      x86_64             2:1.13.1-209.git7d71120.el7.centos               extras              101 k
+ fuse-overlayfs                                     x86_64             0.7.2-6.el7_8                                    extras               54 k
+ fuse3-libs                                         x86_64             3.6.1-4.el7                                      extras               82 k
+ libaio                                             x86_64             0.3.109-13.el7                                   base                 24 k
+ libcgroup                                          x86_64             0.41-21.el7                                      base                 66 k
+ libnl                                              x86_64             1.1.4-3.el7                                      base                128 k
+ libseccomp                                         x86_64             2.3.1-4.el7                                      base                 56 k
+ libselinux-python                                  x86_64             2.5-15.el7                                       base                236 k
+ libselinux-utils                                   x86_64             2.5-15.el7                                       base                151 k
+ libsemanage-python                                 x86_64             2.5-14.el7                                       base                113 k
+ libyaml                                            x86_64             0.1.4-11.el7_0                                   base                 55 k
+ lvm2                                               x86_64             7:2.02.187-6.el7_9.5                             updates             1.3 M
+ lvm2-libs                                          x86_64             7:2.02.187-6.el7_9.5                             updates             1.1 M
+ oci-register-machine                               x86_64             1:0-6.git2b44233.el7                             extras              1.1 M
+ oci-systemd-hook                                   x86_64             1:0.2.0-1.git05e6923.el7_6                       extras               34 k
+ oci-umount                                         x86_64             2:2.5-3.el7                                      extras               33 k
+ parted                                             x86_64             3.1-32.el7                                       base                609 k
+ policycoreutils                                    x86_64             2.5-34.el7                                       base                917 k
+ policycoreutils-python                             x86_64             2.5-34.el7                                       base                457 k
+ python-IPy                                         noarch             0.75-6.el7                                       base                 32 k
+ python-backports                                   x86_64             1.0-8.el7                                        base                5.8 k
+ python-backports-ssl_match_hostname                noarch             3.5.0.1-1.el7                                    base                 13 k
+ python-dateutil                                    noarch             1.5-7.el7                                        base                 85 k
+ python-decorator                                   noarch             3.4.0-3.el7                                      base                 27 k
+ python-dmidecode                                   x86_64             3.12.2-4.el7                                     base                 83 k
+ python-ethtool                                     x86_64             0.8-8.el7                                        base                 34 k
+ python-inotify                                     noarch             0.9.4-4.el7                                      base                 49 k
+ python-ipaddress                                   noarch             1.0.16-2.el7                                     base                 34 k
+ python-pytoml                                      noarch             0.1.14-1.git7dea353.el7                          extras               18 k
+ python-setuptools                                  noarch             0.9.8-7.el7                                      base                397 k
+ python-six                                         noarch             1.9.0-2.el7                                      base                 29 k
+ python-syspurpose                                  x86_64             1.24.51-1.el7.centos                             updates             275 k
+ selinux-policy                                     noarch             3.13.1-268.el7_9.2                               updates             498 k
+ selinux-policy-targeted                            noarch             3.13.1-268.el7_9.2                               updates             7.0 M
+ setools-libs                                       x86_64             3.3.8-4.el7                                      base                620 k
+ slirp4netns                                        x86_64             0.4.3-4.el7_8                                    extras               81 k
+ subscription-manager                               x86_64             1.24.51-1.el7.centos                             updates             1.1 M
+ subscription-manager-rhsm                          x86_64             1.24.51-1.el7.centos                             updates             334 k
+ subscription-manager-rhsm-certificates             x86_64             1.24.51-1.el7.centos                             updates             237 k
+ usermode                                           x86_64             1.111-6.el7                                      base                193 k
+ virt-what                                          x86_64             1.18-4.el7_9.1                                   updates              30 k
+ which                                              x86_64             2.20-7.el7                                       base                 41 k
+ xfsprogs                                           x86_64             4.5.0-22.el7                                     base                897 k
+ yajl                                               x86_64             2.0.4-4.el7                                      base                 39 k
+Updating for dependencies:
+ device-mapper                                      x86_64             7:1.02.170-6.el7_9.5                             updates             297 k
+ device-mapper-libs                                 x86_64             7:1.02.170-6.el7_9.5                             updates             325 k
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package  (+56 Dependent packages)
+Upgrade             (  2 Dependent packages)
+
+Total download size: 42 M
+Is this ok [y/d/N]: y
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+(1/59): atomic-registries-1.22.1-33.gitb507039.el7_8.x86_64.rpm                                                            |  36 kB  00:00:00     
+(2/59): audit-libs-python-2.8.5-4.el7.x86_64.rpm                                                                           |  76 kB  00:00:00     
+(3/59): checkpolicy-2.5-8.el7.x86_64.rpm                                                                                   | 295 kB  00:00:00     
+(4/59): PyYAML-3.10-11.el7.x86_64.rpm                                                                                      | 153 kB  00:00:00     
+(5/59): container-selinux-2.119.2-1.911c772.el7_8.noarch.rpm                                                               |  40 kB  00:00:00     
+(6/59): containers-common-0.1.40-11.el7_8.x86_64.rpm                                                                       |  43 kB  00:00:00     
+(7/59): container-storage-setup-0.11.0-2.git5eaf76c.el7.noarch.rpm                                                         |  35 kB  00:00:00     
+(8/59): device-mapper-1.02.170-6.el7_9.5.x86_64.rpm                                                                        | 297 kB  00:00:00     
+(9/59): device-mapper-event-libs-1.02.170-6.el7_9.5.x86_64.rpm                                                             | 192 kB  00:00:00     
+(10/59): device-mapper-libs-1.02.170-6.el7_9.5.x86_64.rpm                                                                  | 325 kB  00:00:00     
+(11/59): device-mapper-persistent-data-0.8.5-3.el7_9.2.x86_64.rpm                                                          | 423 kB  00:00:00     
+(12/59): device-mapper-event-1.02.170-6.el7_9.5.x86_64.rpm                                                                 | 192 kB  00:00:00     
+(13/59): dmidecode-3.2-5.el7_9.1.x86_64.rpm                                                                                |  82 kB  00:00:00     
+(14/59): docker-client-1.13.1-209.git7d71120.el7.centos.x86_64.rpm                                                         | 3.9 MB  00:00:00     
+(15/59): docker-common-1.13.1-209.git7d71120.el7.centos.x86_64.rpm                                                         | 101 kB  00:00:00     
+(16/59): fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm                                                                           |  54 kB  00:00:00     
+(17/59): fuse3-libs-3.6.1-4.el7.x86_64.rpm                                                                                 |  82 kB  00:00:00     
+(18/59): docker-1.13.1-209.git7d71120.el7.centos.x86_64.rpm                                                                |  17 MB  00:00:00     
+(19/59): libaio-0.3.109-13.el7.x86_64.rpm                                                                                  |  24 kB  00:00:00     
+(20/59): libnl-1.1.4-3.el7.x86_64.rpm                                                                                      | 128 kB  00:00:00     
+(21/59): libseccomp-2.3.1-4.el7.x86_64.rpm                                                                                 |  56 kB  00:00:00     
+(22/59): libselinux-python-2.5-15.el7.x86_64.rpm                                                                           | 236 kB  00:00:00     
+(23/59): libselinux-utils-2.5-15.el7.x86_64.rpm                                                                            | 151 kB  00:00:00     
+(24/59): libsemanage-python-2.5-14.el7.x86_64.rpm                                                                          | 113 kB  00:00:00     
+(25/59): libcgroup-0.41-21.el7.x86_64.rpm                                                                                  |  66 kB  00:00:00     
+(26/59): libyaml-0.1.4-11.el7_0.x86_64.rpm                                                                                 |  55 kB  00:00:00     
+(27/59): oci-systemd-hook-0.2.0-1.git05e6923.el7_6.x86_64.rpm                                                              |  34 kB  00:00:00     
+(28/59): oci-umount-2.5-3.el7.x86_64.rpm                                                                                   |  33 kB  00:00:00     
+(29/59): policycoreutils-2.5-34.el7.x86_64.rpm                                                                             | 917 kB  00:00:00     
+(30/59): policycoreutils-python-2.5-34.el7.x86_64.rpm                                                                      | 457 kB  00:00:00     
+(31/59): python-IPy-0.75-6.el7.noarch.rpm                                                                                  |  32 kB  00:00:00     
+(32/59): python-backports-1.0-8.el7.x86_64.rpm                                                                             | 5.8 kB  00:00:00     
+(33/59): python-backports-ssl_match_hostname-3.5.0.1-1.el7.noarch.rpm                                                      |  13 kB  00:00:00     
+(34/59): python-dateutil-1.5-7.el7.noarch.rpm                                                                              |  85 kB  00:00:00     
+(35/59): python-decorator-3.4.0-3.el7.noarch.rpm                                                                           |  27 kB  00:00:00     
+(36/59): python-dmidecode-3.12.2-4.el7.x86_64.rpm                                                                          |  83 kB  00:00:00     
+(37/59): python-ethtool-0.8-8.el7.x86_64.rpm                                                                               |  34 kB  00:00:00     
+(38/59): python-inotify-0.9.4-4.el7.noarch.rpm                                                                             |  49 kB  00:00:00     
+(39/59): python-ipaddress-1.0.16-2.el7.noarch.rpm                                                                          |  34 kB  00:00:00     
+(40/59): python-pytoml-0.1.14-1.git7dea353.el7.noarch.rpm                                                                  |  18 kB  00:00:00     
+(41/59): python-setuptools-0.9.8-7.el7.noarch.rpm                                                                          | 397 kB  00:00:00     
+(42/59): python-six-1.9.0-2.el7.noarch.rpm                                                                                 |  29 kB  00:00:00     
+(43/59): lvm2-2.02.187-6.el7_9.5.x86_64.rpm                                                                                | 1.3 MB  00:00:00     
+(44/59): python-syspurpose-1.24.51-1.el7.centos.x86_64.rpm                                                                 | 275 kB  00:00:00     
+(45/59): selinux-policy-3.13.1-268.el7_9.2.noarch.rpm                                                                      | 498 kB  00:00:00     
+(46/59): lvm2-libs-2.02.187-6.el7_9.5.x86_64.rpm                                                                           | 1.1 MB  00:00:00     
+(47/59): parted-3.1-32.el7.x86_64.rpm                                                                                      | 609 kB  00:00:00     
+(48/59): slirp4netns-0.4.3-4.el7_8.x86_64.rpm                                                                              |  81 kB  00:00:00     
+(49/59): subscription-manager-1.24.51-1.el7.centos.x86_64.rpm                                                              | 1.1 MB  00:00:00     
+(50/59): subscription-manager-rhsm-1.24.51-1.el7.centos.x86_64.rpm                                                         | 334 kB  00:00:00     
+(51/59): subscription-manager-rhsm-certificates-1.24.51-1.el7.centos.x86_64.rpm                                            | 237 kB  00:00:00     
+(52/59): selinux-policy-targeted-3.13.1-268.el7_9.2.noarch.rpm                                                             | 7.0 MB  00:00:00     
+(53/59): virt-what-1.18-4.el7_9.1.x86_64.rpm                                                                               |  30 kB  00:00:00     
+(54/59): oci-register-machine-0-6.git2b44233.el7.x86_64.rpm                                                                | 1.1 MB  00:00:00     
+(55/59): usermode-1.111-6.el7.x86_64.rpm                                                                                   | 193 kB  00:00:00     
+(56/59): which-2.20-7.el7.x86_64.rpm                                                                                       |  41 kB  00:00:00     
+(57/59): xfsprogs-4.5.0-22.el7.x86_64.rpm                                                                                  | 897 kB  00:00:00     
+(58/59): yajl-2.0.4-4.el7.x86_64.rpm                                                                                       |  39 kB  00:00:00     
+(59/59): setools-libs-3.3.8-4.el7.x86_64.rpm                                                                               | 620 kB  00:00:00     
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                              13 MB/s |  42 MB  00:00:03     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Updating   : 7:device-mapper-1.02.170-6.el7_9.5.x86_64                                                                                     1/61 
+  Updating   : 7:device-mapper-libs-1.02.170-6.el7_9.5.x86_64                                                                                2/61 
+  Installing : 7:device-mapper-event-libs-1.02.170-6.el7_9.5.x86_64                                                                          3/61 
+  Installing : libaio-0.3.109-13.el7.x86_64                                                                                                  4/61 
+  Installing : subscription-manager-rhsm-certificates-1.24.51-1.el7.centos.x86_64                                                            5/61 
+  Installing : python-six-1.9.0-2.el7.noarch                                                                                                 6/61 
+  Installing : libselinux-utils-2.5-15.el7.x86_64                                                                                            7/61 
+  Installing : policycoreutils-2.5-34.el7.x86_64                                                                                             8/61 
+  Installing : selinux-policy-3.13.1-268.el7_9.2.noarch                                                                                      9/61 
+  Installing : xfsprogs-4.5.0-22.el7.x86_64                                                                                                 10/61 
+  Installing : libseccomp-2.3.1-4.el7.x86_64                                                                                                11/61 
+  Installing : python-dateutil-1.5-7.el7.noarch                                                                                             12/61 
+  Installing : yajl-2.0.4-4.el7.x86_64                                                                                                      13/61 
+  Installing : 2:oci-umount-2.5-3.el7.x86_64                                                                                                14/61 
+  Installing : 1:oci-systemd-hook-0.2.0-1.git05e6923.el7_6.x86_64                                                                           15/61 
+  Installing : subscription-manager-rhsm-1.24.51-1.el7.centos.x86_64                                                                        16/61 
+  Installing : slirp4netns-0.4.3-4.el7_8.x86_64                                                                                             17/61 
+  Installing : selinux-policy-targeted-3.13.1-268.el7_9.2.noarch                                                                            18/61 
+  Installing : device-mapper-persistent-data-0.8.5-3.el7_9.2.x86_64                                                                         19/61 
+  Installing : 7:device-mapper-event-1.02.170-6.el7_9.5.x86_64                                                                              20/61 
+Failed to get D-Bus connection: Operation not permitted
+warning: %post(device-mapper-event-7:1.02.170-6.el7_9.5.x86_64) scriptlet failed, exit status 1
+Non-fatal POSTIN scriptlet failure in rpm package 7:device-mapper-event-1.02.170-6.el7_9.5.x86_64
+  Installing : 7:lvm2-libs-2.02.187-6.el7_9.5.x86_64                                                                                        21/61 
+  Installing : 7:lvm2-2.02.187-6.el7_9.5.x86_64                                                                                             22/61 
+Failed to get D-Bus connection: Operation not permitted
+Failed to get D-Bus connection: Operation not permitted
+Failed to get D-Bus connection: Operation not permitted
+warning: %post(lvm2-7:2.02.187-6.el7_9.5.x86_64) scriptlet failed, exit status 1
+Non-fatal POSTIN scriptlet failure in rpm package 7:lvm2-2.02.187-6.el7_9.5.x86_64
+  Installing : parted-3.1-32.el7.x86_64                                                                                                     23/61 
+  Installing : container-storage-setup-0.11.0-2.git5eaf76c.el7.noarch                                                                       24/61 
+  Installing : libcgroup-0.41-21.el7.x86_64                                                                                                 25/61 
+  Installing : usermode-1.111-6.el7.x86_64                                                                                                  26/61 
+  Installing : python-ipaddress-1.0.16-2.el7.noarch                                                                                         27/61 
+  Installing : libnl-1.1.4-3.el7.x86_64                                                                                                     28/61 
+  Installing : python-ethtool-0.8-8.el7.x86_64                                                                                              29/61 
+  Installing : libyaml-0.1.4-11.el7_0.x86_64                                                                                                30/61 
+  Installing : PyYAML-3.10-11.el7.x86_64                                                                                                    31/61 
+  Installing : python-dmidecode-3.12.2-4.el7.x86_64                                                                                         32/61 
+  Installing : audit-libs-python-2.8.5-4.el7.x86_64                                                                                         33/61 
+  Installing : python-backports-1.0-8.el7.x86_64                                                                                            34/61 
+  Installing : python-backports-ssl_match_hostname-3.5.0.1-1.el7.noarch                                                                     35/61 
+  Installing : python-setuptools-0.9.8-7.el7.noarch                                                                                         36/61 
+  Installing : checkpolicy-2.5-8.el7.x86_64                                                                                                 37/61 
+  Installing : 1:oci-register-machine-0-6.git2b44233.el7.x86_64                                                                             38/61 
+  Installing : libsemanage-python-2.5-14.el7.x86_64                                                                                         39/61 
+  Installing : fuse3-libs-3.6.1-4.el7.x86_64                                                                                                40/61 
+  Installing : fuse-overlayfs-0.7.2-6.el7_8.x86_64                                                                                          41/61 
+  Installing : setools-libs-3.3.8-4.el7.x86_64                                                                                              42/61 
+  Installing : python-decorator-3.4.0-3.el7.noarch                                                                                          43/61 
+  Installing : python-pytoml-0.1.14-1.git7dea353.el7.noarch                                                                                 44/61 
+  Installing : 1:atomic-registries-1.22.1-33.gitb507039.el7_8.x86_64                                                                        45/61 
+  Installing : python-syspurpose-1.24.51-1.el7.centos.x86_64                                                                                46/61 
+  Installing : which-2.20-7.el7.x86_64                                                                                                      47/61 
+install-info: No such file or directory for /usr/share/info/which.info.gz
+  Installing : python-IPy-0.75-6.el7.noarch                                                                                                 48/61 
+  Installing : libselinux-python-2.5-15.el7.x86_64                                                                                          49/61 
+  Installing : policycoreutils-python-2.5-34.el7.x86_64                                                                                     50/61 
+  Installing : 2:container-selinux-2.119.2-1.911c772.el7_8.noarch                                                                           51/61 
+setsebool:  SELinux is disabled.
+  Installing : python-inotify-0.9.4-4.el7.noarch                                                                                            52/61 
+  Installing : 1:dmidecode-3.2-5.el7_9.1.x86_64                                                                                             53/61 
+  Installing : virt-what-1.18-4.el7_9.1.x86_64                                                                                              54/61 
+  Installing : subscription-manager-1.24.51-1.el7.centos.x86_64                                                                             55/61 
+  Installing : 1:containers-common-0.1.40-11.el7_8.x86_64                                                                                   56/61 
+  Installing : 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64                                                                      57/61 
+  Installing : 2:docker-client-1.13.1-209.git7d71120.el7.centos.x86_64                                                                      58/61 
+  Installing : 2:docker-1.13.1-209.git7d71120.el7.centos.x86_64                                                                             59/61 
+  Cleanup    : 7:device-mapper-1.02.170-6.el7.x86_64                                                                                        60/61 
+  Cleanup    : 7:device-mapper-libs-1.02.170-6.el7.x86_64                                                                                   61/61 
+  Verifying  : 7:device-mapper-event-1.02.170-6.el7_9.5.x86_64                                                                               1/61 
+  Verifying  : virt-what-1.18-4.el7_9.1.x86_64                                                                                               2/61 
+  Verifying  : python-backports-ssl_match_hostname-3.5.0.1-1.el7.noarch                                                                      3/61 
+  Verifying  : 1:atomic-registries-1.22.1-33.gitb507039.el7_8.x86_64                                                                         4/61 
+  Verifying  : python-ethtool-0.8-8.el7.x86_64                                                                                               5/61 
+  Verifying  : fuse-overlayfs-0.7.2-6.el7_8.x86_64                                                                                           6/61 
+  Verifying  : yajl-2.0.4-4.el7.x86_64                                                                                                       7/61 
+  Verifying  : 1:dmidecode-3.2-5.el7_9.1.x86_64                                                                                              8/61 
+  Verifying  : 2:container-selinux-2.119.2-1.911c772.el7_8.noarch                                                                            9/61 
+  Verifying  : container-storage-setup-0.11.0-2.git5eaf76c.el7.noarch                                                                       10/61 
+  Verifying  : python-inotify-0.9.4-4.el7.noarch                                                                                            11/61 
+  Verifying  : 2:docker-client-1.13.1-209.git7d71120.el7.centos.x86_64                                                                      12/61 
+  Verifying  : libselinux-python-2.5-15.el7.x86_64                                                                                          13/61 
+  Verifying  : 1:containers-common-0.1.40-11.el7_8.x86_64                                                                                   14/61 
+  Verifying  : python-setuptools-0.9.8-7.el7.noarch                                                                                         15/61 
+  Verifying  : 7:device-mapper-libs-1.02.170-6.el7_9.5.x86_64                                                                               16/61 
+  Verifying  : selinux-policy-targeted-3.13.1-268.el7_9.2.noarch                                                                            17/61 
+  Verifying  : python-IPy-0.75-6.el7.noarch                                                                                                 18/61 
+  Verifying  : python-dateutil-1.5-7.el7.noarch                                                                                             19/61 
+  Verifying  : policycoreutils-2.5-34.el7.x86_64                                                                                            20/61 
+  Verifying  : 2:docker-common-1.13.1-209.git7d71120.el7.centos.x86_64                                                                      21/61 
+  Verifying  : which-2.20-7.el7.x86_64                                                                                                      22/61 
+  Verifying  : subscription-manager-rhsm-1.24.51-1.el7.centos.x86_64                                                                        23/61 
+  Verifying  : python-syspurpose-1.24.51-1.el7.centos.x86_64                                                                                24/61 
+  Verifying  : 2:oci-umount-2.5-3.el7.x86_64                                                                                                25/61 
+  Verifying  : libseccomp-2.3.1-4.el7.x86_64                                                                                                26/61 
+  Verifying  : xfsprogs-4.5.0-22.el7.x86_64                                                                                                 27/61 
+  Verifying  : libselinux-utils-2.5-15.el7.x86_64                                                                                           28/61 
+  Verifying  : policycoreutils-python-2.5-34.el7.x86_64                                                                                     29/61 
+  Verifying  : python-pytoml-0.1.14-1.git7dea353.el7.noarch                                                                                 30/61 
+  Verifying  : python-six-1.9.0-2.el7.noarch                                                                                                31/61 
+  Verifying  : 7:lvm2-2.02.187-6.el7_9.5.x86_64                                                                                             32/61 
+  Verifying  : python-decorator-3.4.0-3.el7.noarch                                                                                          33/61 
+  Verifying  : setools-libs-3.3.8-4.el7.x86_64                                                                                              34/61 
+  Verifying  : fuse3-libs-3.6.1-4.el7.x86_64                                                                                                35/61 
+  Verifying  : 7:lvm2-libs-2.02.187-6.el7_9.5.x86_64                                                                                        36/61 
+  Verifying  : libsemanage-python-2.5-14.el7.x86_64                                                                                         37/61 
+  Verifying  : 1:oci-systemd-hook-0.2.0-1.git05e6923.el7_6.x86_64                                                                           38/61 
+  Verifying  : libaio-0.3.109-13.el7.x86_64                                                                                                 39/61 
+  Verifying  : 1:oci-register-machine-0-6.git2b44233.el7.x86_64                                                                             40/61 
+  Verifying  : checkpolicy-2.5-8.el7.x86_64                                                                                                 41/61 
+  Verifying  : slirp4netns-0.4.3-4.el7_8.x86_64                                                                                             42/61 
+  Verifying  : python-backports-1.0-8.el7.x86_64                                                                                            43/61 
+  Verifying  : subscription-manager-1.24.51-1.el7.centos.x86_64                                                                             44/61 
+  Verifying  : selinux-policy-3.13.1-268.el7_9.2.noarch                                                                                     45/61 
+  Verifying  : audit-libs-python-2.8.5-4.el7.x86_64                                                                                         46/61 
+  Verifying  : 7:device-mapper-event-libs-1.02.170-6.el7_9.5.x86_64                                                                         47/61 
+  Verifying  : python-dmidecode-3.12.2-4.el7.x86_64                                                                                         48/61 
+  Verifying  : libyaml-0.1.4-11.el7_0.x86_64                                                                                                49/61 
+  Verifying  : 2:docker-1.13.1-209.git7d71120.el7.centos.x86_64                                                                             50/61 
+  Verifying  : libnl-1.1.4-3.el7.x86_64                                                                                                     51/61 
+  Verifying  : subscription-manager-rhsm-certificates-1.24.51-1.el7.centos.x86_64                                                           52/61 
+  Verifying  : python-ipaddress-1.0.16-2.el7.noarch                                                                                         53/61 
+  Verifying  : device-mapper-persistent-data-0.8.5-3.el7_9.2.x86_64                                                                         54/61 
+  Verifying  : 7:device-mapper-1.02.170-6.el7_9.5.x86_64                                                                                    55/61 
+  Verifying  : PyYAML-3.10-11.el7.x86_64                                                                                                    56/61 
+  Verifying  : parted-3.1-32.el7.x86_64                                                                                                     57/61 
+  Verifying  : usermode-1.111-6.el7.x86_64                                                                                                  58/61 
+  Verifying  : libcgroup-0.41-21.el7.x86_64                                                                                                 59/61 
+  Verifying  : 7:device-mapper-1.02.170-6.el7.x86_64                                                                                        60/61 
+  Verifying  : 7:device-mapper-libs-1.02.170-6.el7.x86_64                                                                                   61/61 
+
+Installed:
+  docker.x86_64 2:1.13.1-209.git7d71120.el7.centos                                                                                                
+
+Dependency Installed:
+  PyYAML.x86_64 0:3.10-11.el7                                                  atomic-registries.x86_64 1:1.22.1-33.gitb507039.el7_8             
+  audit-libs-python.x86_64 0:2.8.5-4.el7                                       checkpolicy.x86_64 0:2.5-8.el7                                    
+  container-selinux.noarch 2:2.119.2-1.911c772.el7_8                           container-storage-setup.noarch 0:0.11.0-2.git5eaf76c.el7          
+  containers-common.x86_64 1:0.1.40-11.el7_8                                   device-mapper-event.x86_64 7:1.02.170-6.el7_9.5                   
+  device-mapper-event-libs.x86_64 7:1.02.170-6.el7_9.5                         device-mapper-persistent-data.x86_64 0:0.8.5-3.el7_9.2            
+  dmidecode.x86_64 1:3.2-5.el7_9.1                                             docker-client.x86_64 2:1.13.1-209.git7d71120.el7.centos           
+  docker-common.x86_64 2:1.13.1-209.git7d71120.el7.centos                      fuse-overlayfs.x86_64 0:0.7.2-6.el7_8                             
+  fuse3-libs.x86_64 0:3.6.1-4.el7                                              libaio.x86_64 0:0.3.109-13.el7                                    
+  libcgroup.x86_64 0:0.41-21.el7                                               libnl.x86_64 0:1.1.4-3.el7                                        
+  libseccomp.x86_64 0:2.3.1-4.el7                                              libselinux-python.x86_64 0:2.5-15.el7                             
+  libselinux-utils.x86_64 0:2.5-15.el7                                         libsemanage-python.x86_64 0:2.5-14.el7                            
+  libyaml.x86_64 0:0.1.4-11.el7_0                                              lvm2.x86_64 7:2.02.187-6.el7_9.5                                  
+  lvm2-libs.x86_64 7:2.02.187-6.el7_9.5                                        oci-register-machine.x86_64 1:0-6.git2b44233.el7                  
+  oci-systemd-hook.x86_64 1:0.2.0-1.git05e6923.el7_6                           oci-umount.x86_64 2:2.5-3.el7                                     
+  parted.x86_64 0:3.1-32.el7                                                   policycoreutils.x86_64 0:2.5-34.el7                               
+  policycoreutils-python.x86_64 0:2.5-34.el7                                   python-IPy.noarch 0:0.75-6.el7                                    
+  python-backports.x86_64 0:1.0-8.el7                                          python-backports-ssl_match_hostname.noarch 0:3.5.0.1-1.el7        
+  python-dateutil.noarch 0:1.5-7.el7                                           python-decorator.noarch 0:3.4.0-3.el7                             
+  python-dmidecode.x86_64 0:3.12.2-4.el7                                       python-ethtool.x86_64 0:0.8-8.el7                                 
+  python-inotify.noarch 0:0.9.4-4.el7                                          python-ipaddress.noarch 0:1.0.16-2.el7                            
+  python-pytoml.noarch 0:0.1.14-1.git7dea353.el7                               python-setuptools.noarch 0:0.9.8-7.el7                            
+  python-six.noarch 0:1.9.0-2.el7                                              python-syspurpose.x86_64 0:1.24.51-1.el7.centos                   
+  selinux-policy.noarch 0:3.13.1-268.el7_9.2                                   selinux-policy-targeted.noarch 0:3.13.1-268.el7_9.2               
+  setools-libs.x86_64 0:3.3.8-4.el7                                            slirp4netns.x86_64 0:0.4.3-4.el7_8                                
+  subscription-manager.x86_64 0:1.24.51-1.el7.centos                           subscription-manager-rhsm.x86_64 0:1.24.51-1.el7.centos           
+  subscription-manager-rhsm-certificates.x86_64 0:1.24.51-1.el7.centos         usermode.x86_64 0:1.111-6.el7                                     
+  virt-what.x86_64 0:1.18-4.el7_9.1                                            which.x86_64 0:2.20-7.el7                                         
+  xfsprogs.x86_64 0:4.5.0-22.el7                                               yajl.x86_64 0:2.0.4-4.el7                                         
+
+Dependency Updated:
+  device-mapper.x86_64 7:1.02.170-6.el7_9.5                             device-mapper-libs.x86_64 7:1.02.170-6.el7_9.5                            
+
+Complete!
+#########################################################################################################################################################
+[root@5fe42f4a1582 /]# rpm -q docker
+docker-1.13.1-209.git7d71120.el7.centos.x86_64
+#########################################################################################################################################################
+[root@5fe42f4a1582 /]# ------>To exit from container (ctrl + pq)
+[root@ip-172-31-45-145 ~]# docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+mysql        latest    b939d379d46e   23 hours ago    514MB
+wordpress    latest    fcd4967b9728   7 days ago      615MB
+centos       7         eeb6ee3f44bd   16 months ago   204MB
+#########################################################################################################################################################
+[root@ip-172-31-45-145 ~]# docker ps
+CONTAINER ID   IMAGE      COMMAND       CREATED         STATUS         PORTS     NAMES
+5fe42f4a1582   centos:7   "/bin/bash"   4 minutes ago   Up 4 minutes             myos4
+#########################################################################################################################################################
+[root@ip-172-31-45-145 ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS                      PORTS     NAMES
+5fe42f4a1582   centos:7       "/bin/bash"              4 minutes ago   Up 4 minutes                          myos4
+5463034163b3   mysql:latest   "docker-entrypoint.s…"   12 hours ago    Exited (0) 9 hours ago                DB
+da4b69cf6b0a   wordpress      "docker-entrypoint.s…"   12 hours ago    Exited (0) 9 hours ago                myword
+159eb9286a86   centos:7       "/bin/bash"              22 hours ago    Exited (137) 22 hours ago             webpage
+2e5040e651d7   centos:7       "/bin/bash"              23 hours ago    Exited (137) 22 hours ago             myos3
+2695133fd790   centos:7       "/bin/bash"              35 hours ago    Exited (137) 35 hours ago             myos2
+c9f861e0d1c4   centos:7       "/bin/bash"              36 hours ago    Exited (137) 36 hours ago             myos
+#########################################################################################################################################################
+[root@ip-172-31-45-145 ~]# docker commit myos4 mak:version1
+sha256:206757b4796b81d6939ba8437f95bfda9b23ee48b6fdbe7bfc0f897303e1c420
+#########################################################################################################################################################
+[root@ip-172-31-45-145 ~]# docker images
+REPOSITORY   TAG        IMAGE ID       CREATED          SIZE
+mak          version1   206757b4796b   11 seconds ago   610MB
+mysql        latest     b939d379d46e   23 hours ago     514MB
+wordpress    latest     fcd4967b9728   7 days ago       615MB
+centos       7          eeb6ee3f44bd   16 months ago    204MB
+#########################################################################################################################################################
+[root@ip-172-31-45-145 ~]# docker run -it --name madhu mak:version1
+By taking duplicate from original images and checking the saved images.
+
+[root@5dc1afc38b51 /]# rpm -q httpd
+httpd-2.4.6-97.el7.centos.5.x86_64
+
+[root@5dc1afc38b51 /]# rpm -q docker
+docker-1.13.1-209.git7d71120.el7.centos.x86_64
+
+[root@5dc1afc38b51 /]# rpm -q python3
+python3-3.6.8-18.el7.x86_64
+
+[root@5dc1afc38b51 /]# rpm -q net-tools
+net-tools-2.0-0.25.20131004git.el7.x86_64
+
+[root@5dc1afc38b51 /]# ------>To exit from container (ctrl + pq) [root@ip-172-31-45-145 ~]# 
+_______________________________________________________________________//_________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

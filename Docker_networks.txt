@@ -1,0 +1,711 @@
+Last login: Fri Jan 20 03:15:13 2023 from ec2-13-233-177-3.ap-south-1.compute.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-172-31-45-145 ~]$ sudo su -
+Last login: Fri Jan 20 03:15:21 UTC 2023 on pts/1
+[root@ip-172-31-45-145 ~]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.31.45.145  netmask 255.255.240.0  broadcast 172.31.47.255
+        inet6 fe80::6f:21ff:fe7b:ba46  prefixlen 64  scopeid 0x20<link>
+        ether 02:6f:21:7b:ba:46  txqueuelen 1000  (Ethernet)
+        RX packets 14129  bytes 88008946 (83.9 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3987  bytes 306357 (299.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@ip-172-31-45-145 ~]# ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=110 time=1.43 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=110 time=1.50 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=110 time=1.60 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=110 time=1.48 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=110 time=1.46 ms
+64 bytes from 8.8.8.8: icmp_seq=6 ttl=110 time=1.45 ms
+64 bytes from 8.8.8.8: icmp_seq=7 ttl=110 time=1.56 ms
+64 bytes from 8.8.8.8: icmp_seq=8 ttl=110 time=1.47 ms
+64 bytes from 8.8.8.8: icmp_seq=9 ttl=110 time=1.46 ms
+64 bytes from 8.8.8.8: icmp_seq=10 ttl=110 time=1.49 ms
+64 bytes from 8.8.8.8: icmp_seq=11 ttl=110 time=1.44 ms
+64 bytes from 8.8.8.8: icmp_seq=12 ttl=110 time=1.54 ms
+64 bytes from 8.8.8.8: icmp_seq=13 ttl=110 time=1.47 ms
+64 bytes from 8.8.8.8: icmp_seq=14 ttl=110 time=1.54 ms
+64 bytes from 8.8.8.8: icmp_seq=15 ttl=110 time=1.46 ms
+64 bytes from 8.8.8.8: icmp_seq=16 ttl=110 time=1.47 ms
+64 bytes from 8.8.8.8: icmp_seq=17 ttl=110 time=1.50 ms
+64 bytes from 8.8.8.8: icmp_seq=18 ttl=110 time=1.44 ms
+64 bytes from 8.8.8.8: icmp_seq=19 ttl=110 time=1.53 ms
+64 bytes from 8.8.8.8: icmp_seq=20 ttl=110 time=1.50 ms
+64 bytes from 8.8.8.8: icmp_seq=21 ttl=110 time=1.45 ms
+64 bytes from 8.8.8.8: icmp_seq=22 ttl=110 time=1.47 ms
+64 bytes from 8.8.8.8: icmp_seq=23 ttl=110 time=1.50 ms
+64 bytes from 8.8.8.8: icmp_seq=24 ttl=110 time=1.44 ms
+64 bytes from 8.8.8.8: icmp_seq=25 ttl=110 time=1.48 ms
+64 bytes from 8.8.8.8: icmp_seq=26 ttl=110 time=1.56 ms
+64 bytes from 8.8.8.8: icmp_seq=27 ttl=110 time=1.44 ms
+64 bytes from 8.8.8.8: icmp_seq=28 ttl=110 time=1.46 ms
+64 bytes from 8.8.8.8: icmp_seq=29 ttl=110 time=1.48 ms
+64 bytes from 8.8.8.8: icmp_seq=30 ttl=110 time=1.44 ms
+64 bytes from 8.8.8.8: icmp_seq=31 ttl=110 time=1.49 ms
+^C
+--- 8.8.8.8 ping statistics ---
+31 packets transmitted, 31 received, 0% packet loss, time 30050ms
+rtt min/avg/max/mdev = 1.435/1.488/1.605/0.051 ms
+[root@ip-172-31-45-145 ~]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.31.45.145  netmask 255.255.240.0  broadcast 172.31.47.255
+        inet6 fe80::6f:21ff:fe7b:ba46  prefixlen 64  scopeid 0x20<link>
+        ether 02:6f:21:7b:ba:46  txqueuelen 1000  (Ethernet)
+        RX packets 14335  bytes 88026031 (83.9 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4231  bytes 332662 (324.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@ip-172-31-45-145 ~]# docker ps
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+[root@ip-172-31-45-145 ~]# systemctl start docker
+[root@ip-172-31-45-145 ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@ip-172-31-45-145 ~]# docker ps -a
+CONTAINER ID   IMAGE              COMMAND                  CREATED      STATUS                  PORTS     NAMES
+41486d027895   wordpress:latest   "docker-entrypoint.s…"   4 days ago   Exited (0) 4 days ago             mywp
+6386c9331c33   ubuntu:14.04       "/bin/bash"              4 days ago   Exited (0) 4 days ago             os2
+15c6b6932355   ubuntu:14.04       "/bin/bash"              4 days ago   Exited (0) 4 days ago             os1
+61ad0a075fd8   mysql:latest       "docker-entrypoint.s…"   4 days ago   Exited (0) 4 days ago             mydb
+ae32d3a321e5   wordpress:latest   "docker-entrypoint.s…"   4 days ago   Exited (0) 4 days ago             myword
+[root@ip-172-31-45-145 ~]# docker inspect 4148 | grep "IPAddress"
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAddress": "",
+[root@ip-172-31-45-145 ~]# docker inspect 6386 | grep "IPAddress"
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAddress": "",
+[root@ip-172-31-45-145 ~]# docker inspect 156 | grep "IPAddress"
+Error: No such object: 156
+[root@ip-172-31-45-145 ~]# docker inspect 15c6 | grep "IPAddress"
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAddress": "",
+[root@ip-172-31-45-145 ~]# docker attach 15c6
+You cannot attach to a stopped container, start it first
+[root@ip-172-31-45-145 ~]# docker run -it --name new centos:7
+Unable to find image 'centos:7' locally
+7: Pulling from library/centos
+Digest: sha256:be65f488b7764ad3638f236b7b515b3678369a5124c47b8d32916d6487418ea4
+Status: Downloaded newer image for centos:7
+[root@da46902a0192 /]# yum install net-tools
+Loaded plugins: fastestmirror, ovl
+Determining fastest mirrors
+ * base: download.cf.centos.org
+ * extras: download.cf.centos.org
+ * updates: download.cf.centos.org
+base                                                                                                                                   | 3.6 kB  00:00:00     
+extras                                                                                                                                 | 2.9 kB  00:00:00     
+updates                                                                                                                                | 2.9 kB  00:00:00     
+(1/4): extras/7/x86_64/primary_db                                                                                                      | 249 kB  00:00:00     
+(2/4): base/7/x86_64/group_gz                                                                                                          | 153 kB  00:00:00     
+(3/4): updates/7/x86_64/primary_db                                                                                                     |  19 MB  00:00:00     
+base/7/x86_64/primary_db       FAILED                                          ================================            ]  0.7 B/s |  20 MB 2375:25:49 ETA 
+http://mirror.centos.org/centos/7/os/x86_64/repodata/6d0c3a488c282fe537794b5946b01e28c7f44db79097bb06826e1c0c88bad5ef-primary.sqlite.bz2: [Errno 12] Timeout on http://mirror.centos.org/centos/7/os/x86_64/repodata/6d0c3a488c282fe537794b5946b01e28c7f44db79097bb06826e1c0c88bad5ef-primary.sqlite.bz2: (28, 'Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds')
+Trying other mirror.
+(4/4): base/7/x86_64/primary_db                                                                                                        | 6.1 MB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package net-tools.x86_64 0:2.0-0.25.20131004git.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================================================
+ Package                             Arch                             Version                                            Repository                      Size
+==============================================================================================================================================================
+Installing:
+ net-tools                           x86_64                           2.0-0.25.20131004git.el7                           base                           306 k
+
+Transaction Summary
+==============================================================================================================================================================
+Install  1 Package
+
+Total download size: 306 k
+Installed size: 917 k
+Is this ok [y/d/N]: y
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/base/packages/net-tools-2.0-0.25.20131004git.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Public key for net-tools-2.0-0.25.20131004git.el7.x86_64.rpm is not installed
+net-tools-2.0-0.25.20131004git.el7.x86_64.rpm                                                                                          | 306 kB  00:00:00     
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-9.2009.0.el7.centos.x86_64 (@CentOS)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64                                                                                                  1/1 
+  Verifying  : net-tools-2.0-0.25.20131004git.el7.x86_64                                                                                                  1/1 
+
+Installed:
+  net-tools.x86_64 0:2.0-0.25.20131004git.el7                                                                                                                 
+
+Complete!
+[root@da46902a0192 /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 2379  bytes 26940351 (25.6 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1905  bytes 154580 (150.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@da46902a0192 /]# [root@ip-172-31-45-145 ~]# docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+1d62cb8afa21   bridge    bridge    local
+06510c1bcbc0   host      host      local
+fc5a68f82eff   none      null      local
+[root@ip-172-31-45-145 ~]# docker inspect new
+[
+    {
+        "Id": "da46902a01921dbc946cc260d8d5c393698ade0b3d1e5682d0d9c7ddbffe2e30",
+        "Created": "2023-01-24T14:07:55.567083644Z",
+        "Path": "/bin/bash",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 3960,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2023-01-24T14:07:56.229110113Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:eeb6ee3f44bd0b5103bb561b4c16bcb82328cfe5809ab675bb17ab3a16c517c9",
+        "ResolvConfPath": "/var/lib/docker/containers/da46902a01921dbc946cc260d8d5c393698ade0b3d1e5682d0d9c7ddbffe2e30/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/da46902a01921dbc946cc260d8d5c393698ade0b3d1e5682d0d9c7ddbffe2e30/hostname",
+        "HostsPath": "/var/lib/docker/containers/da46902a01921dbc946cc260d8d5c393698ade0b3d1e5682d0d9c7ddbffe2e30/hosts",
+        "LogPath": "/var/lib/docker/containers/da46902a01921dbc946cc260d8d5c393698ade0b3d1e5682d0d9c7ddbffe2e30/da46902a01921dbc946cc260d8d5c393698ade0b3d1e5682d0d9c7ddbffe2e30-json.log",
+        "Name": "/new",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": [
+                {
+                    "Name": "nofile",
+                    "Hard": 65536,
+                    "Soft": 32768
+                }
+            ],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/1a13209359825b08cf4434727dd1ce8cdba1afb6c5d68711e007bce5f798feb3-init/diff:/var/lib/docker/overlay2/e85a6a9a06c64d7e3c61f340fa2baab01ba5fea504e443fa93da9a3c45d9f9c2/diff",
+                "MergedDir": "/var/lib/docker/overlay2/1a13209359825b08cf4434727dd1ce8cdba1afb6c5d68711e007bce5f798feb3/merged",
+                "UpperDir": "/var/lib/docker/overlay2/1a13209359825b08cf4434727dd1ce8cdba1afb6c5d68711e007bce5f798feb3/diff",
+                "WorkDir": "/var/lib/docker/overlay2/1a13209359825b08cf4434727dd1ce8cdba1afb6c5d68711e007bce5f798feb3/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "da46902a0192",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "centos:7",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.label-schema.build-date": "20201113",
+                "org.label-schema.license": "GPLv2",
+                "org.label-schema.name": "CentOS Base Image",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.vendor": "CentOS",
+                "org.opencontainers.image.created": "2020-11-13 00:00:00+00:00",
+                "org.opencontainers.image.licenses": "GPL-2.0-only",
+                "org.opencontainers.image.title": "CentOS Base Image",
+                "org.opencontainers.image.vendor": "CentOS"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "cddce55bc992c1ccb5fec25d4f077d87af4f33ce5d99036fe5ba1822afadab4e",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/var/run/docker/netns/cddce55bc992",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "27e7162f4e0de8d7c4de83e8230a289b1dd34afeca28453571562fb1b016c279",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.2",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:02",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "1d62cb8afa216987ee40e76cabc11814d5e1c6c7d847653777ef1da7bfd81097",
+                    "EndpointID": "27e7162f4e0de8d7c4de83e8230a289b1dd34afeca28453571562fb1b016c279",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[root@ip-172-31-45-145 ~]# docker network create --driver bridge --subnet 10.10.2.0/24 matnet
+ba646d15d03654615738b17b705951a6d614364a941872ff91f9030acc6bca0f
+[root@ip-172-31-45-145 ~]# docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+1d62cb8afa21   bridge    bridge    local
+06510c1bcbc0   host      host      local
+ba646d15d036   matnet    bridge    local
+fc5a68f82eff   none      null      local
+[root@ip-172-31-45-145 ~]# docker run -it --name new1 --network matnet centos:7
+[root@05445114da38 /]# ifconfig       
+bash: ifconfig: command not found
+[root@05445114da38 /]# rpm -q net-tools
+package net-tools is not installed
+[root@05445114da38 /]# yum install net-tools
+Loaded plugins: fastestmirror, ovl
+Determining fastest mirrors
+ * base: download.cf.centos.org
+ * extras: download.cf.centos.org
+ * updates: download.cf.centos.org
+base                                                                                                                                   | 3.6 kB  00:00:00     
+extras                                                                                                                                 | 2.9 kB  00:00:00     
+updates                                                                                                                                | 2.9 kB  00:00:00     
+(2/4): base/7/x86_64/primary_db                                  0% [                                                       ]  0.0 B/s |    0 B  (1/4): base/7/x86_64/group_gz                                                                                                          | 153 kB  00:00:00     
+(2/4): extras/7/x86_64/primary_db                                                                                                      | 249 kB  00:00:00     
+(3/4): updates/7/x86_64/primary_db                                                                                                     |  19 MB  00:00:00     
+(4/4): base/7/x86_64/primary_db                                  76% [=========================================             ]  0.0 B/s |  19 MB  (4/4): base/7/x86_64/primary_db                                  79% [==========================================-           ] 773 kB/s |  20 MB  (4/4): base/7/x86_64/primary_db                                  84% [=============================================         ] 954 kB/s |  21 MB  (4/4): base/7/x86_64/primary_db                                  88% [===============================================-      ] 1.1 MB/s |  22 MB  (4/4): base/7/x86_64/primary_db                                  95% [===================================================-  ] 1.4 MB/s |  24 MB  (4/4): base/7/x86_64/primary_db                                                                                                        | 6.1 MB  00:00:02     
+Resolving Dependencies
+--> Running transaction check
+---> Package net-tools.x86_64 0:2.0-0.25.20131004git.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================================================
+ Package                             Arch                             Version                                            Repository                      Size
+==============================================================================================================================================================
+Installing:
+ net-tools                           x86_64                           2.0-0.25.20131004git.el7                           base                           306 k
+
+Transaction Summary
+==============================================================================================================================================================
+Install  1 Package
+
+Total download size: 306 k
+Installed size: 917 k
+Is this ok [y/d/N]: y
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/base/packages/net-tools-2.0-0.25.20131004git.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Public key for net-tools-2.0-0.25.20131004git.el7.x86_64.rpm is not installed
+net-tools-2.0-0.25.20131004git.el7.x86_64.rpm                                                                                          | 306 kB  00:00:00     
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-9.2009.0.el7.centos.x86_64 (@CentOS)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [                                                                                         Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#####                                                                                    Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [############                                                                             Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [###############                                                                          Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#####################                                                                    Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [############################                                                             Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#############################                                                            Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [###################################                                                      Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [####################################                                                     Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#######################################                                                  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#########################################                                                Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [###########################################                                              Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#############################################                                            Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [###############################################                                          Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [######################################################                                   Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [###########################################################                              Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#############################################################                            Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [###################################################################                      Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [########################################################################                 Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#############################################################################            Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [################################################################################         Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [######################################################################################   Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#######################################################################################  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#######################################################################################  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#######################################################################################  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#######################################################################################  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#######################################################################################  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#######################################################################################  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64 [#######################################################################################  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64                                                                                                  1/1 
+  Verifying  : net-tools-2.0-0.25.20131004git.el7.x86_64                                                                                                  1/1 
+
+Installed:
+  net-tools.x86_64 0:2.0-0.25.20131004git.el7                                                                                                                 
+
+Complete!
+[root@05445114da38 /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.10.2.2  netmask 255.255.255.0  broadcast 10.10.2.255
+        ether 02:42:0a:0a:02:02  txqueuelen 0  (Ethernet)
+        RX packets 3575  bytes 26972014 (25.7 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2340  bytes 185168 (180.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 40  bytes 5125 (5.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 40  bytes 5125 (5.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@05445114da38 /]# [root@ip-172-31-45-145 ~]# docker inspect new1
+[
+    {
+        "Id": "05445114da383969b413d5f6f055b78aee37909e9797a1958c7c75001564d13e",
+        "Created": "2023-01-24T14:25:08.560481714Z",
+        "Path": "/bin/bash",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 4207,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2023-01-24T14:25:09.185440805Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:eeb6ee3f44bd0b5103bb561b4c16bcb82328cfe5809ab675bb17ab3a16c517c9",
+        "ResolvConfPath": "/var/lib/docker/containers/05445114da383969b413d5f6f055b78aee37909e9797a1958c7c75001564d13e/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/05445114da383969b413d5f6f055b78aee37909e9797a1958c7c75001564d13e/hostname",
+        "HostsPath": "/var/lib/docker/containers/05445114da383969b413d5f6f055b78aee37909e9797a1958c7c75001564d13e/hosts",
+        "LogPath": "/var/lib/docker/containers/05445114da383969b413d5f6f055b78aee37909e9797a1958c7c75001564d13e/05445114da383969b413d5f6f055b78aee37909e9797a1958c7c75001564d13e-json.log",
+        "Name": "/new1",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "matnet",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": [
+                {
+                    "Name": "nofile",
+                    "Hard": 65536,
+                    "Soft": 32768
+                }
+            ],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/10c255cc60f03543e70561cd306a2baa97cb91014d1dd4886df399f3ef08b14d-init/diff:/var/lib/docker/overlay2/e85a6a9a06c64d7e3c61f340fa2baab01ba5fea504e443fa93da9a3c45d9f9c2/diff",
+                "MergedDir": "/var/lib/docker/overlay2/10c255cc60f03543e70561cd306a2baa97cb91014d1dd4886df399f3ef08b14d/merged",
+                "UpperDir": "/var/lib/docker/overlay2/10c255cc60f03543e70561cd306a2baa97cb91014d1dd4886df399f3ef08b14d/diff",
+                "WorkDir": "/var/lib/docker/overlay2/10c255cc60f03543e70561cd306a2baa97cb91014d1dd4886df399f3ef08b14d/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "05445114da38",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "centos:7",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.label-schema.build-date": "20201113",
+                "org.label-schema.license": "GPLv2",
+                "org.label-schema.name": "CentOS Base Image",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.vendor": "CentOS",
+                "org.opencontainers.image.created": "2020-11-13 00:00:00+00:00",
+                "org.opencontainers.image.licenses": "GPL-2.0-only",
+                "org.opencontainers.image.title": "CentOS Base Image",
+                "org.opencontainers.image.vendor": "CentOS"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "63d49b35fa684ed3ca442fa1e45b73dc7035cbac599800db9cb1359119c3f791",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/var/run/docker/netns/63d49b35fa68",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "matnet": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "05445114da38"
+                    ],
+                    "NetworkID": "ba646d15d03654615738b17b705951a6d614364a941872ff91f9030acc6bca0f",
+                    "EndpointID": "1e91e93dae83858bac24cc2bb009008354a73d186b2561c5b71b539fe9a51546",
+                    "Gateway": "10.10.2.1",
+                    "IPAddress": "10.10.2.2",
+                    "IPPrefixLen": 24,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:0a:0a:02:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[root@ip-172-31-45-145 ~]#

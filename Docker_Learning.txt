@@ -1,0 +1,38 @@
+https://docs.docker.com/compose/
+
+https://docs.docker.com/engine/reference/commandline/compose/
+
+https://github.com/dockersamples/example-voting-app
+
+
+
+
+
+
+Here are some basic Docker commands that you may find useful:
+
+docker run: This command is used to run a Docker container from a Docker image.
+
+docker start: This command is used to start a stopped Docker container.
+
+docker stop: This command is used to stop a running Docker container.
+
+docker ps: This command is used to list all running Docker containers.
+
+docker images: This command is used to list all Docker images that are stored locally on the host machine.
+
+docker build: This command is used to build a Docker image from a Dockerfile.
+
+docker pull: This command is used to download a Docker image from a registry, such as Docker Hub.
+
+docker push: This command is used to upload a Docker image to a registry.
+
+docker exec: This command is used to run a command in a running Docker container.
+
+docker logs: This command is used to view the logs for a Docker container.
+
+
+
+
+
+rpm -q docker

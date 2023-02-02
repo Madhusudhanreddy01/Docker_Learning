@@ -1,0 +1,844 @@
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+8 package(s) needed for security, out of 9 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-4-28 ~]$ sudo su -
+[root@ip-172-31-4-28 ~]# systemctl status docker
+Unit docker.service could not be found.
+[root@ip-172-31-4-28 ~]# rpm -q docker
+package docker is not installed
+[root@ip-172-31-4-28 ~]# yum install docker
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package docker.x86_64 0:20.10.17-1.amzn2.0.2 will be installed
+--> Processing Dependency: runc >= 1.0.0 for package: docker-20.10.17-1.amzn2.0.2.x86_64
+--> Processing Dependency: libcgroup >= 0.40.rc1-5.15 for package: docker-20.10.17-1.amzn2.0.2.x86_64
+--> Processing Dependency: containerd >= 1.3.2 for package: docker-20.10.17-1.amzn2.0.2.x86_64
+--> Processing Dependency: pigz for package: docker-20.10.17-1.amzn2.0.2.x86_64
+--> Running transaction check
+---> Package containerd.x86_64 0:1.6.8-1.amzn2.0.1 will be installed
+---> Package libcgroup.x86_64 0:0.41-21.amzn2 will be installed
+---> Package pigz.x86_64 0:2.3.4-1.amzn2.0.1 will be installed
+---> Package runc.x86_64 0:1.1.4-1.amzn2.0.1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==================================================================================================================================================
+ Package                        Arch                       Version                                    Repository                             Size
+==================================================================================================================================================
+Installing:
+ docker                         x86_64                     20.10.17-1.amzn2.0.2                       amzn2extra-docker                      39 M
+Installing for dependencies:
+ containerd                     x86_64                     1.6.8-1.amzn2.0.1                          amzn2extra-docker                      27 M
+ libcgroup                      x86_64                     0.41-21.amzn2                              amzn2-core                             66 k
+ pigz                           x86_64                     2.3.4-1.amzn2.0.1                          amzn2-core                             81 k
+ runc                           x86_64                     1.1.4-1.amzn2.0.1                          amzn2extra-docker                     2.9 M
+
+Transaction Summary
+==================================================================================================================================================
+Install  1 Package (+4 Dependent packages)
+
+Total download size: 69 M
+Installed size: 260 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/5): libcgroup-0.41-21.amzn2.x86_64.rpm                                                                                  |  66 kB  00:00:00     
+(2/5): pigz-2.3.4-1.amzn2.0.1.x86_64.rpm                                                                                   |  81 kB  00:00:00     
+(3/5): containerd-1.6.8-1.amzn2.0.1.x86_64.rpm                                                                             |  27 MB  00:00:00     
+(4/5): docker-20.10.17-1.amzn2.0.2.x86_64.rpm                                                                              |  39 MB  00:00:01     
+(5/5): runc-1.1.4-1.amzn2.0.1.x86_64.rpm                                                                                   | 2.9 MB  00:00:00     
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                              66 MB/s |  69 MB  00:00:01     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : runc-1.1.4-1.amzn2.0.1.x86_64                                                                                                  1/5 
+  Installing : containerd-1.6.8-1.amzn2.0.1.x86_64                                                                                            2/5 
+  Installing : libcgroup-0.41-21.amzn2.x86_64                                                                                                 3/5 
+  Installing : pigz-2.3.4-1.amzn2.0.1.x86_64                                                                                                  4/5 
+  Installing : docker-20.10.17-1.amzn2.0.2.x86_64                                                                                             5/5 
+  Verifying  : containerd-1.6.8-1.amzn2.0.1.x86_64                                                                                            1/5 
+  Verifying  : pigz-2.3.4-1.amzn2.0.1.x86_64                                                                                                  2/5 
+  Verifying  : libcgroup-0.41-21.amzn2.x86_64                                                                                                 3/5 
+  Verifying  : docker-20.10.17-1.amzn2.0.2.x86_64                                                                                             4/5 
+  Verifying  : runc-1.1.4-1.amzn2.0.1.x86_64                                                                                                  5/5 
+
+Installed:
+  docker.x86_64 0:20.10.17-1.amzn2.0.2                                                                                                            
+
+Dependency Installed:
+  containerd.x86_64 0:1.6.8-1.amzn2.0.1   libcgroup.x86_64 0:0.41-21.amzn2   pigz.x86_64 0:2.3.4-1.amzn2.0.1   runc.x86_64 0:1.1.4-1.amzn2.0.1  
+
+Complete!
+[root@ip-172-31-4-28 ~]# rpm -q docker
+docker-20.10.17-1.amzn2.0.2.x86_64
+[root@ip-172-31-4-28 ~]# docker ps
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+[root@ip-172-31-4-28 ~]# systemctl status docker
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+     Docs: https://docs.docker.com
+[root@ip-172-31-4-28 ~]# systemctl start docker
+[root@ip-172-31-4-28 ~]# systemctl status docker
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: active (running) since Wed 2023-01-25 14:28:54 UTC; 2s ago
+     Docs: https://docs.docker.com
+  Process: 3890 ExecStartPre=/usr/libexec/docker/docker-setup-runtimes.sh (code=exited, status=0/SUCCESS)
+  Process: 3889 ExecStartPre=/bin/mkdir -p /run/docker (code=exited, status=0/SUCCESS)
+ Main PID: 3893 (dockerd)
+    Tasks: 7
+   Memory: 20.9M
+   CGroup: /system.slice/docker.service
+           └─3893 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --default-ulimit nofile=32768:65536
+
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal dockerd[3893]: time="2023-01-25T14:28:54.063346149Z" level=info msg="ClientConn...=grpc
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal dockerd[3893]: time="2023-01-25T14:28:54.098504034Z" level=warning msg="Your ke...ight"
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal dockerd[3893]: time="2023-01-25T14:28:54.098972029Z" level=warning msg="Your ke...vice"
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal dockerd[3893]: time="2023-01-25T14:28:54.099443185Z" level=info msg="Loading co...art."
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal dockerd[3893]: time="2023-01-25T14:28:54.272993495Z" level=info msg="Default br...ress"
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal dockerd[3893]: time="2023-01-25T14:28:54.321183080Z" level=info msg="Loading co...one."
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal dockerd[3893]: time="2023-01-25T14:28:54.337394964Z" level=info msg="Docker dae...10.17
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal dockerd[3893]: time="2023-01-25T14:28:54.337970962Z" level=info msg="Daemon has...tion"
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal systemd[1]: Started Docker Application Container Engine.
+Jan 25 14:28:54 ip-172-31-4-28.ap-south-1.compute.internal dockerd[3893]: time="2023-01-25T14:28:54.361697734Z" level=info msg="API listen...sock"
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@ip-172-31-4-28 ~]# systemctl enable docker
+Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
+[root@ip-172-31-4-28 ~]# docker swarm -h
+Flag shorthand -h has been deprecated, please use --help
+
+Usage:  docker swarm COMMAND
+
+Manage Swarm
+
+Commands:
+  ca          Display and rotate the root CA
+  init        Initialize a swarm
+  join        Join a swarm as a node and/or manager
+  join-token  Manage join tokens
+  leave       Leave the swarm
+  unlock      Unlock swarm
+  unlock-key  Manage the unlock key
+  update      Update the swarm
+
+Run 'docker swarm COMMAND --help' for more information on a command.
+[root@ip-172-31-4-28 ~]# docker info
+Client:
+ Context:    default
+ Debug Mode: false
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 20.10.17
+ Storage Driver: overlay2
+  Backing Filesystem: xfs
+  Supports d_type: true
+  Native Overlay Diff: true
+  userxattr: false
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 1
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: runc io.containerd.runc.v2 io.containerd.runtime.v1.linux
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 9cd3357b7fd7218e4aec3eae239db1f68a5a6ec6
+ runc version: 5fd4c4d144137e991c4acebb2146ab1483a97925
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: default
+ Kernel Version: 5.10.157-139.675.amzn2.x86_64
+ Operating System: Amazon Linux 2
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 1
+ Total Memory: 964.8MiB
+ Name: ip-172-31-4-28.ap-south-1.compute.internal
+ ID: O2J2:5RCI:CCGG:ZIYT:67LS:EUT5:3NZL:VFYB:KLGC:3Z5W:SWE5:WXRO
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Live Restore Enabled: false
+
+[root@ip-172-31-4-28 ~]# docker swarm -h
+Flag shorthand -h has been deprecated, please use --help
+
+Usage:  docker swarm COMMAND
+
+Manage Swarm
+
+Commands:
+  ca          Display and rotate the root CA
+  init        Initialize a swarm
+  join        Join a swarm as a node and/or manager
+  join-token  Manage join tokens
+  leave       Leave the swarm
+  unlock      Unlock swarm
+  unlock-key  Manage the unlock key
+  update      Update the swarm
+
+Run 'docker swarm COMMAND --help' for more information on a command.
+[root@ip-172-31-4-28 ~]# docker swarm init --advertise-addr 192.168.99.121
+Swarm initialized: current node (99rrqucftnfi3jwutkhjvcyir) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-430lgdpffm8uydm9xx0nrqgha31ihqgdyzrim2v0xd9b4tejbu-1l2c8jps85qm1gujbt8n3wh2q 192.168.99.121:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]# Swarm initialized: current node (bvz81updecsj6wjz393c09vti) is now a manager.
+-bash: syntax error near unexpected token `('
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]# To add a worker to this swarm, run the following command:
+-bash: To: command not found
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]#     docker swarm join \
+>     --token SWMTKN-1-3pu6hszjas19xyp7ghgosyx9k8atbfcr8p2is99znpy26u2lkl-1awxwuwd3z9j1z3puu7rcgdbx \
+>     172.17.0.2:2377
+Error response from daemon: This node is already part of a swarm. Use "docker swarm leave" to leave this swarm and join another one.
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]# To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+-bash: To: command not found
+[root@ip-172-31-4-28 ~]# docker swarm init --advertise-addr 192.168.99.121
+Error response from daemon: This node is already part of a swarm. Use "docker swarm leave" to leave this swarm and join another one.
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]# Swarm initialized: current node (bvz81updecsj6wjz393c09vti) is now a manager.
+-bash: syntax error near unexpected token `('
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]# To add a worker to this swarm, run the following command:
+-bash: To: command not found
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]#     docker swarm join \
+>     --token SWMTKN-1-3pu6hszjas19xyp7ghgosyx9k8atbfcr8p2is99znpy26u2lkl-1awxwuwd3z9j1z3puu7rcgdbx \
+>     172.17.0.2:2377
+Error response from daemon: This node is already part of a swarm. Use "docker swarm leave" to leave this swarm and join another one.
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]# To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+-bash: To: command not found
+[root@ip-172-31-4-28 ~]# docker info
+Client:
+ Context:    default
+ Debug Mode: false
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 20.10.17
+ Storage Driver: overlay2
+  Backing Filesystem: xfs
+  Supports d_type: true
+  Native Overlay Diff: true
+  userxattr: false
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 1
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: active
+  NodeID: 99rrqucftnfi3jwutkhjvcyir
+  Is Manager: true
+  ClusterID: zh7ypfrcve10x5zp9frym7oxv
+  Managers: 1
+  Nodes: 1
+  Default Address Pool: 10.0.0.0/8  
+  SubnetSize: 24
+  Data Path Port: 4789
+  Orchestration:
+   Task History Retention Limit: 5
+  Raft:
+   Snapshot Interval: 10000
+   Number of Old Snapshots to Retain: 0
+   Heartbeat Tick: 1
+   Election Tick: 10
+  Dispatcher:
+   Heartbeat Period: 5 seconds
+  CA Configuration:
+   Expiry Duration: 3 months
+   Force Rotate: 0
+  Autolock Managers: false
+  Root Rotation In Progress: false
+  Node Address: 192.168.99.121
+  Manager Addresses:
+   192.168.99.121:2377
+ Runtimes: io.containerd.runc.v2 io.containerd.runtime.v1.linux runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 9cd3357b7fd7218e4aec3eae239db1f68a5a6ec6
+ runc version: 5fd4c4d144137e991c4acebb2146ab1483a97925
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: default
+ Kernel Version: 5.10.157-139.675.amzn2.x86_64
+ Operating System: Amazon Linux 2
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 1
+ Total Memory: 964.8MiB
+ Name: ip-172-31-4-28.ap-south-1.compute.internal
+ ID: O2J2:5RCI:CCGG:ZIYT:67LS:EUT5:3NZL:VFYB:KLGC:3Z5W:SWE5:WXRO
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Live Restore Enabled: false
+
+[root@ip-172-31-4-28 ~]# docker swarm leave
+Error response from daemon: You are attempting to leave the swarm on a node that is participating as a manager. Removing the last manager erases all current state of the swarm. Use `--force` to ignore this message.
+[root@ip-172-31-4-28 ~]# docker swarm leave --force
+Node left the swarm.
+[root@ip-172-31-4-28 ~]# docker swarm init --advertise-addr 172.31.4.28
+Swarm initialized: current node (yih5d1jc6s3j8hbcfd8aac53p) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-1yie0huymg97t93qkd698213zcwe16ifeec2yt6hnxpzxyyot3-3kv38r7h5rhar2x98mzt6vy9a 172.31.4.28:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+[root@ip-172-31-4-28 ~]# docker node ls
+ID                            HOSTNAME                                     STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+yih5d1jc6s3j8hbcfd8aac53p *   ip-172-31-4-28.ap-south-1.compute.internal   Ready     Active         Leader           20.10.17
+[root@ip-172-31-4-28 ~]# docker node ls
+ID                            HOSTNAME                                      STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+yih5d1jc6s3j8hbcfd8aac53p *   ip-172-31-4-28.ap-south-1.compute.internal    Ready     Active         Leader           20.10.17
+3s4hfeul1yn8gdv9fy5behv4k     ip-172-31-9-219.ap-south-1.compute.internal   Ready     Active                          20.10.17
+[root@ip-172-31-4-28 ~]# docker node ls
+ID                            HOSTNAME                                      STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+9i4apura66e7h1gev68p2v07h     ip-172-31-0-136.ap-south-1.compute.internal   Ready     Active                          20.10.17
+ikisf2abvydg41e5gempr40ae     ip-172-31-1-213.ap-south-1.compute.internal   Ready     Active                          20.10.17
+yih5d1jc6s3j8hbcfd8aac53p *   ip-172-31-4-28.ap-south-1.compute.internal    Ready     Active         Leader           20.10.17
+3s4hfeul1yn8gdv9fy5behv4k     ip-172-31-9-219.ap-south-1.compute.internal   Ready     Active                          20.10.17
+[root@ip-172-31-4-28 ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@ip-172-31-4-28 ~]# docker run -dit --name meghu centos:7
+Unable to find image 'centos:7' locally
+7: Pulling from library/centos
+2d473b07cdd5: Pull complete 
+Digest: sha256:be65f488b7764ad3638f236b7b515b3678369a5124c47b8d32916d6487418ea4
+Status: Downloaded newer image for centos:7
+d9260dbeb71cc51678955f2f3f0b1674dea7cca7dad6e8fa81663a80e060316a
+[root@ip-172-31-4-28 ~]# docker ps
+CONTAINER ID   IMAGE      COMMAND       CREATED         STATUS         PORTS     NAMES
+d9260dbeb71c   centos:7   "/bin/bash"   7 seconds ago   Up 6 seconds             meghu
+[root@ip-172-31-4-28 ~]# docker services ls
+docker: 'services' is not a docker command.
+See 'docker --help'
+[root@ip-172-31-4-28 ~]# docker services create --name sumangala centos:7
+unknown flag: --name
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with
+                           "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+
+[root@ip-172-31-4-28 ~]# docker services ls
+docker: 'services' is not a docker command.
+See 'docker --help'
+[root@ip-172-31-4-28 ~]# docker services create --name sumangala centos:7
+unknown flag: --name
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with
+                           "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+
+[root@ip-172-31-4-28 ~]# docker service create --name sumangala centos:7
+l0bl38isw3uz89twlesyckt75
+overall progress: 0 out of 1 tasks 
+1/1: starting  [============================================>      ] 
+verify: Detected task failure 
+^COperation continuing in background.
+Use `docker service ps l0bl38isw3uz89twlesyckt75` to check progress.
+[root@ip-172-31-4-28 ~]# docker services ls
+docker: 'services' is not a docker command.
+See 'docker --help'
+[root@ip-172-31-4-28 ~]# docker service ls
+ID             NAME        MODE         REPLICAS   IMAGE      PORTS
+l0bl38isw3uz   sumangala   replicated   0/1        centos:7   
+[root@ip-172-31-4-28 ~]# docker ps sumangala
+"docker ps" accepts no arguments.
+See 'docker ps --help'.
+
+Usage:  docker ps [OPTIONS]
+
+List containers
+[root@ip-172-31-4-28 ~]# docker service create --name anjan centos:7
+mspo3ne126b75qfur9tmmmsbv
+overall progress: 0 out of 1 tasks 
+1/1: ready     [======================================>            ] 
+verify: Detected task failure 
+^COperation continuing in background.
+Use `docker service ps mspo3ne126b75qfur9tmmmsbv` to check progress.
+[root@ip-172-31-4-28 ~]# docker service create --name redis redis:3.0.6
+tazl6ip8p5swhcp9anm4e69cu
+overall progress: 1 out of 1 tasks 
+1/1: running   [==================================================>] 
+verify: Service converged 
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]# dmu1ept4cxcfe8k8lhtux3ro3
+-bash: dmu1ept4cxcfe8k8lhtux3ro3: command not found
+[root@ip-172-31-4-28 ~]# docker service create --mode global --name redis2 redis:3.0.6
+mfozoo5xk3n8d6i48lyvl1myi
+overall progress: 4 out of 4 tasks 
+ikisf2abvydg: running   [==================================================>] 
+9i4apura66e7: running   [==================================================>] 
+3s4hfeul1yn8: running   [==================================================>] 
+yih5d1jc6s3j: running   [==================================================>] 
+verify: Service converged 
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]# a8q9dasaafudfs8q8w32udass
+-bash: a8q9dasaafudfs8q8w32udass: command not found
+[root@ip-172-31-4-28 ~]# docker service ls
+ID             NAME        MODE         REPLICAS   IMAGE         PORTS
+mspo3ne126b7   anjan       replicated   1/1        centos:7      
+tazl6ip8p5sw   redis       replicated   1/1        redis:3.0.6   
+mfozoo5xk3n8   redis2      global       4/4        redis:3.0.6   
+l0bl38isw3uz   sumangala   replicated   0/1        centos:7      
+[root@ip-172-31-4-28 ~]# 
+[root@ip-172-31-4-28 ~]# ID            NAME    MODE        REPLICAS  IMAGE
+-bash: ID: command not found
+[root@ip-172-31-4-28 ~]# dmu1ept4cxcf  redis   replicated  1/1       redis:3.0.6
+-bash: dmu1ept4cxcf: command not found
+[root@ip-172-31-4-28 ~]# a8q9dasaafud  redis2  global      1/1       redis:3.0.6
+-bash: a8q9dasaafud: command not found
+[root@ip-172-31-4-28 ~]# docker service ls
+ID             NAME        MODE         REPLICAS   IMAGE         PORTS
+mspo3ne126b7   anjan       replicated   0/1        centos:7      
+tazl6ip8p5sw   redis       replicated   1/1        redis:3.0.6   
+mfozoo5xk3n8   redis2      global       4/4        redis:3.0.6   
+l0bl38isw3uz   sumangala   replicated   0/1        centos:7      
+[root@ip-172-31-4-28 ~]# docker ps redis
+"docker ps" accepts no arguments.
+See 'docker ps --help'.
+
+Usage:  docker ps [OPTIONS]
+
+List containers
+[root@ip-172-31-4-28 ~]# docker ps redis2
+"docker ps" accepts no arguments.
+See 'docker ps --help'.
+
+Usage:  docker ps [OPTIONS]
+
+List containers
+[root@ip-172-31-4-28 ~]# docker run -dit --name meghu2 centos:7
+dd65fe0ce98d1d3b072b8bcc486744d62aa6220659e5e2b08f85394a123302bf
+[root@ip-172-31-4-28 ~]# docker service redis
+
+Usage:  docker service COMMAND
+
+Manage services
+
+Commands:
+  create      Create a new service
+  inspect     Display detailed information on one or more services
+  logs        Fetch the logs of a service or task
+  ls          List services
+  ps          List the tasks of one or more services
+  rm          Remove one or more services
+  rollback    Revert changes to a service's configuration
+  scale       Scale one or multiple replicated services
+  update      Update a service
+
+Run 'docker service COMMAND --help' for more information on a command.
+[root@ip-172-31-4-28 ~]# docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS      NAMES
+dd65fe0ce98d   centos:7      "/bin/bash"              34 seconds ago   Up 33 seconds              meghu2
+d59cff4f8805   redis:3.0.6   "/entrypoint.sh redi…"   2 minutes ago    Up 2 minutes    6379/tcp   redis2.yih5d1jc6s3j8hbcfd8aac53p.rz5z5nrhnu1usx7l0wc2bygjx
+d9260dbeb71c   centos:7      "/bin/bash"              17 minutes ago   Up 17 minutes              meghu
+[root@ip-172-31-4-28 ~]# docker service ps
+"docker service ps" requires at least 1 argument.
+See 'docker service ps --help'.
+
+Usage:  docker service ps [OPTIONS] SERVICE [SERVICE...]
+
+List the tasks of one or more services
+[root@ip-172-31-4-28 ~]# docker service ps redis
+ID             NAME      IMAGE         NODE                                          DESIRED STATE   CURRENT STATE           ERROR     PORTS
+cni6k3gmqncu   redis.1   redis:3.0.6   ip-172-31-1-213.ap-south-1.compute.internal   Running         Running 3 minutes ago             
+[root@ip-172-31-4-28 ~]# docker run -dit --name meghu3 centos:7
+a16b0f565b079c3f8f07709912f365a9bc4d417c6a4835cc556fe73a3ecf14ef
+[root@ip-172-31-4-28 ~]# docker service ps redis
+ID             NAME      IMAGE         NODE                                          DESIRED STATE   CURRENT STATE           ERROR     PORTS
+cni6k3gmqncu   redis.1   redis:3.0.6   ip-172-31-1-213.ap-south-1.compute.internal   Running         Running 4 minutes ago             
+[root@ip-172-31-4-28 ~]# docker service ps sumangala
+ID             NAME              IMAGE      NODE                                          DESIRED STATE   CURRENT STATE             ERROR     PORTS
+0h2wxdcfitof   sumangala.1       centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Ready           Ready 3 seconds ago                 
+cphethtxoqkt    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 4 seconds ago              
+mq4ylqakugqy    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 9 seconds ago              
+0fzh3ldj1wo3    \_ sumangala.1   centos:7   ip-172-31-0-136.ap-south-1.compute.internal   Shutdown        Complete 15 seconds ago             
+tryrz8bmdsg3    \_ sumangala.1   centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Shutdown        Complete 21 seconds ago             
+[root@ip-172-31-4-28 ~]# docker service ps sumangala
+ID             NAME              IMAGE      NODE                                          DESIRED STATE   CURRENT STATE             ERROR     PORTS
+eab02543g5yp   sumangala.1       centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Ready           Ready 4 seconds ago                 
+5g0e96xpbzve    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 5 seconds ago              
+o3xw3p9gdvzu    \_ sumangala.1   centos:7   ip-172-31-0-136.ap-south-1.compute.internal   Shutdown        Complete 10 seconds ago             
+lyldh2ctrii9    \_ sumangala.1   centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Shutdown        Complete 16 seconds ago             
+suojiy03nk0a    \_ sumangala.1   centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Shutdown        Complete 22 seconds ago             
+[root@ip-172-31-4-28 ~]# docker service ps sumangala
+ID             NAME              IMAGE      NODE                                          DESIRED STATE   CURRENT STATE             ERROR     PORTS
+lyfv4lenfm10   sumangala.1       centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Ready           Ready 4 seconds ago                 
+pt8esgmu3lrw    \_ sumangala.1   centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Shutdown        Complete 4 seconds ago              
+nv9w6aoxg7qz    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 10 seconds ago             
+1a1jq8mhpmwf    \_ sumangala.1   centos:7   ip-172-31-0-136.ap-south-1.compute.internal   Shutdown        Complete 16 seconds ago             
+ftedhllquacu    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 21 seconds ago             
+[root@ip-172-31-4-28 ~]# docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS      NAMES
+a16b0f565b07   centos:7      "/bin/bash"              5 minutes ago    Up 5 minutes               meghu3
+dd65fe0ce98d   centos:7      "/bin/bash"              7 minutes ago    Up 7 minutes               meghu2
+d59cff4f8805   redis:3.0.6   "/entrypoint.sh redi…"   9 minutes ago    Up 9 minutes    6379/tcp   redis2.yih5d1jc6s3j8hbcfd8aac53p.rz5z5nrhnu1usx7l0wc2bygjx
+d9260dbeb71c   centos:7      "/bin/bash"              24 minutes ago   Up 24 minutes              meghu
+[root@ip-172-31-4-28 ~]# docker stop d59
+d59
+[root@ip-172-31-4-28 ~]# docker service ps sumangala
+ID             NAME              IMAGE      NODE                                          DESIRED STATE   CURRENT STATE             ERROR     PORTS
+sdhtb53obrxx   sumangala.1       centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Running         Ready 4 seconds ago                 
+n6u23fj3zdyx    \_ sumangala.1   centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Shutdown        Complete 5 seconds ago              
+ozv1da6oyswi    \_ sumangala.1   centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Shutdown        Complete 10 seconds ago             
+wy238xyc2r3p    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 16 seconds ago             
+v569oz9dqkgx    \_ sumangala.1   centos:7   ip-172-31-0-136.ap-south-1.compute.internal   Shutdown        Complete 22 seconds ago             
+[root@ip-172-31-4-28 ~]# docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS      NAMES
+39914361e29a   redis:3.0.6   "/entrypoint.sh redi…"   26 seconds ago   Up 20 seconds   6379/tcp   redis2.yih5d1jc6s3j8hbcfd8aac53p.yv2x4g35154ffi347dngy9cto
+a16b0f565b07   centos:7      "/bin/bash"              6 minutes ago    Up 6 minutes               meghu3
+dd65fe0ce98d   centos:7      "/bin/bash"              8 minutes ago    Up 8 minutes               meghu2
+d9260dbeb71c   centos:7      "/bin/bash"              25 minutes ago   Up 25 minutes              meghu
+[root@ip-172-31-4-28 ~]# docker stop 399
+399
+[root@ip-172-31-4-28 ~]# docker service ps sumangala
+ID             NAME              IMAGE      NODE                                          DESIRED STATE   CURRENT STATE                     ERROR     PORTS
+xi1qpl2jis8d   sumangala.1       centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Ready           Ready less than a second ago                
+wr768txkq2md    \_ sumangala.1   centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Shutdown        Complete less than a second ago             
+yjyonv2cu7gk    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 5 seconds ago                      
+qmaxs5uo3ai8    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 11 seconds ago                     
+oqhs6rck0jya    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 17 seconds ago                     
+[root@ip-172-31-4-28 ~]# docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS      NAMES
+3128ee12fe44   redis:3.0.6   "/entrypoint.sh redi…"   24 seconds ago   Up 18 seconds   6379/tcp   redis2.yih5d1jc6s3j8hbcfd8aac53p.rxerkxwr3vxri5ptcu1u8j17j
+a16b0f565b07   centos:7      "/bin/bash"              6 minutes ago    Up 6 minutes               meghu3
+dd65fe0ce98d   centos:7      "/bin/bash"              9 minutes ago    Up 9 minutes               meghu2
+d9260dbeb71c   centos:7      "/bin/bash"              26 minutes ago   Up 26 minutes              meghu
+[root@ip-172-31-4-28 ~]# docker stop 312
+312
+[root@ip-172-31-4-28 ~]# docker service ps sumangala
+ID             NAME              IMAGE      NODE                                          DESIRED STATE   CURRENT STATE                    ERROR     PORTS
+phz01z3tqkls   sumangala.1       centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Running         Running less than a second ago             
+t4wmkgq30ejh    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 5 seconds ago                     
+6yhjo3lhnndg    \_ sumangala.1   centos:7   ip-172-31-0-136.ap-south-1.compute.internal   Shutdown        Complete 11 seconds ago                    
+n0w2n7dx97pr    \_ sumangala.1   centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Shutdown        Complete 17 seconds ago                    
+xi1qpl2jis8d    \_ sumangala.1   centos:7   ip-172-31-4-28.ap-south-1.compute.internal    Shutdown        Complete 22 seconds ago                    
+[root@ip-172-31-4-28 ~]# docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS      NAMES
+6c72bf2189a6   redis:3.0.6   "/entrypoint.sh redi…"   24 seconds ago   Up 18 seconds   6379/tcp   redis2.yih5d1jc6s3j8hbcfd8aac53p.yqzh07l31oes4bly293kbtuk4
+a16b0f565b07   centos:7      "/bin/bash"              7 minutes ago    Up 7 minutes               meghu3
+dd65fe0ce98d   centos:7      "/bin/bash"              9 minutes ago    Up 9 minutes               meghu2
+d9260dbeb71c   centos:7      "/bin/bash"              26 minutes ago   Up 26 minutes              meghu
+[root@ip-172-31-4-28 ~]# docker stop 6c7
+6c7
+[root@ip-172-31-4-28 ~]# docker service ps sumangala
+ID             NAME              IMAGE      NODE                                          DESIRED STATE   CURRENT STATE             ERROR     PORTS
+541369rq3hyk   sumangala.1       centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Ready           Ready 1 second ago                  
+4ni348mxhrex    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 1 second ago               
+n8x8dd8w3qk6    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 7 seconds ago              
+kiqm6jjgpw4w    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 12 seconds ago             
+7am4ieh113ac    \_ sumangala.1   centos:7   ip-172-31-9-219.ap-south-1.compute.internal   Shutdown        Complete 18 seconds ago             
+[root@ip-172-31-4-28 ~]# docker service ps
+"docker service ps" requires at least 1 argument.
+See 'docker service ps --help'.
+
+Usage:  docker service ps [OPTIONS] SERVICE [SERVICE...]
+
+List the tasks of one or more services
+[root@ip-172-31-4-28 ~]# docker services -h
+Flag shorthand -h has been deprecated, please use --help
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with
+                           "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+[root@ip-172-31-4-28 ~]# docker service -h
+Flag shorthand -h has been deprecated, please use --help
+
+Usage:  docker service COMMAND
+
+Manage services
+
+Commands:
+  create      Create a new service
+  inspect     Display detailed information on one or more services
+  logs        Fetch the logs of a service or task
+  ls          List services
+  ps          List the tasks of one or more services
+  rm          Remove one or more services
+  rollback    Revert changes to a service's configuration
+  scale       Scale one or multiple replicated services
+  update      Update a service
+
+Run 'docker service COMMAND --help' for more information on a command.
+[root@ip-172-31-4-28 ~]#
